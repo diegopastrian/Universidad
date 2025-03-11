@@ -12,4 +12,4 @@
 - Planificación según un desempeño esperado.
 - Variabilidad (de actividad personal, gastos).
 - Impacto.
-		- Impactos
+		- Impactos 2e2o329
