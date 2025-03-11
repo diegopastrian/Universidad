@@ -25,7 +25,7 @@ El diseño general del sistema genera problemas estructurales.
 - Promover buenas prácticas de dev
 - Puente de comunicación entre equipos dev
 - Interfaz cliente/equipo técnico
-
+***
 #### 11 de marzo
 ##### Requerimientos no funcionales
 
