@@ -1,0 +1,57 @@
+#### 6 de Marzo
+
+- Edge, fog y cloud.
+- Objetos como fuentes de info. 
+##### Características:
+- Nodos inalámbricos de corto alcance (o largo con limitaciones)
+- Poca capacidad de procesamiento
+- Alimentados a batería
+- poca capacidad de almacenamiento
+- relojes de baja precisión (sincronización)
+- tamaño
+- Robustos (ambientes hostiles)
+- Auto-Organizarse
+- sincronización
+- mantener bajo consumo por la batería o red
+- Seguridad (encriptacion capas)
+- ID, autenticación
+- Localización
+### Problemas:
+Control de acceso, Enrutamiento, Mantención de topología (lista de vecinos), Asignación de recursos. Consumo, Gestión.
+
+#### 10 de Marzo
+
+### Datos
+
+Patrones de funcionamiento:
+- Envío periódico de datos. 
+	- ¿Cada cuanto necesito saber cierta información? La periodicidad depende del proceso.
+- Detección de eventos 
+- Aproximación de funciones (agregar datos según valores de vecinos)
+- Detección de bordes
+- Seguimiento de objetos
+- Consultas a la red
+- Pre-procesamiento en la red
+- Redes orientadas a contenidos
+- Tiempo Real? -> Garantías de máximo retardo y pérdida de datos.
+
+### Distribución
+
+La distribución de los nodos:
+- Al azar
+- Regularmente matricial
+- ,,,,,k
+
+### Mantenimiento
+- Reemplazo de baterias es posible? 
+- Alimentación a partir de fuentes externas.
+	- Sol, movimiento, aire, etc.
+- Duración esperada (Cambio de baterías en TODOS LOS NODOS a la veztgfgtgf)
+- Deteccion de fallas (algoritmos de verificación de funcionamiento correcto)
+- Incorporación de nuevos nodos en el funcionamiento de la red.
+
+### Escalabilidad
+- Limitaciones en dirección/enrutamiento?
+- Limitaciones en recursos disponibles: reúso de recursos?
+- Convivencia con otras redes en mismo espectro/protocolo
+- Sistema de captura asociado a un proveedor.

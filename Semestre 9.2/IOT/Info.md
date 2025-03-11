@@ -1,0 +1,2 @@
+- 2 solemnes 70%
+- Examen: 30%
