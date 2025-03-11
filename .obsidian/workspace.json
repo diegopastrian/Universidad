@@ -11,14 +11,10 @@
             "id": "05c9c373e85d43c3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Semestre 9/TICS 2/Cátedra TICS 2.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Cátedra TICS 2"
+              "title": "Nueva pestaña"
             }
           }
         ]
@@ -165,8 +161,25 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "05c9c373e85d43c3",
+  "active": "51c565067d79cddd",
   "lastOpenFiles": [
+    "Semestre 9/TICS 2/Cátedra TICS 2.md",
+    "Semestre 9/Metaheurísticas/INFO.md",
+    "Semestre 9/Metaheurísticas/Catedra.md",
+    "Semestre 9/IOT/Info.md",
+    "Semestre 9/IOT/Cátedra IOT.md",
+    "Semestre 9/Data Science/Cátedra.md",
+    "Semestre 9/Data Science/Info.md",
+    "Semestre 9/Arquitecturas Emergentes/Cátedra.md",
+    "Semestre 9/Arquitectura de Software/Info.md",
+    "Semestre 9/Arquitectura de Software/Cátedra Arqui. de Software.md",
+    "Semestre 9/TICS 2",
+    "Semestre 9/Metaheurísticas",
+    "Semestre 9/IOT",
+    "Semestre 9/Data Science",
+    "Semestre 9/Arquitecturas Emergentes",
+    "Semestre 9/Arquitectura de Software",
+    "Semestre 9",
     "Sin título.canvas",
     "2025-03-11.md",
     "Semestre 9/TICS 2/Cátedra TICS 2.md",
@@ -184,23 +197,13 @@
     "Semestre 9/Metaheurísticas/Catedra.md",
     "Semestre 9/Arquitectura de Software",
     "Semestre 9/IOT/Info.md",
-    "Semestre 9/IOT",
     "Semestre 9/Metaheurísticas/INFO.md",
-    "Semestre 9/Data Science",
-    "Semestre 9/Metaheurísticas",
-    "Semestre 9",
     "Semestre 8/Criptografia/Cripto Solemne 2.md",
     "Semestre 8/Criptografia/Criptografía.md",
-    "Semestre 8/Sin nombre 1/TI control 4.md",
-    "Semestre 8/Criptografia/Lab Criptografía.md",
     "imagenes/Pasted image 20241024200923.png",
     "imagenes/Pasted image 20241011140019.png",
-    "Semestre 8/Simulación y Biología programable/Catedra Biologia.md",
-    "Semestre 8/Sin nombre 1",
     "imagenes/Pasted image 20240830092104.png",
     "imagenes/Pasted image 20240830093029.png",
-    "imagenes",
-    "Semestre 8/Simulación y Biología programable",
     "Pasted image 20240826102331.png"
   ]
 }
