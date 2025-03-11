@@ -145,14 +145,23 @@
               "icon": "lucide-list",
               "title": "Esquema de Inteligencia artificial"
             }
+          },
+          {
+            "id": "be99c0c980e0ce39",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -167,10 +176,11 @@
   },
   "active": "05c9c373e85d43c3",
   "lastOpenFiles": [
+    "Semestre 9/Arquitectura de Software/Cátedra Arqui. de Software.md",
+    "Semestre 9/TICS 2/Cátedra TICS 2.md",
+    "Sin título.canvas",
     "subir.sh",
-    "Semestre 9/TICS 2/Cátedra TICS 2.md",
     "Semestre 9",
-    "Semestre 9/TICS 2/Cátedra TICS 2.md",
     "Semestre 9/Metaheurísticas/INFO.md",
     "Semestre 9/Metaheurísticas/Catedra.md",
     "Semestre 9/IOT/Info.md",
@@ -179,7 +189,6 @@
     "Semestre 9/Data Science/Info.md",
     "Semestre 9/Arquitecturas Emergentes/Cátedra.md",
     "Semestre 9/Arquitectura de Software/Info.md",
-    "Semestre 9/Arquitectura de Software/Cátedra Arqui. de Software.md",
     "Semestre 9/TICS 2",
     "Semestre 9/Metaheurísticas",
     "Semestre 9/IOT",
@@ -187,16 +196,12 @@
     "Semestre 9/Arquitecturas Emergentes",
     "Semestre 9/Arquitectura de Software",
     "Semestre 9",
-    "Sin título.canvas",
     "2025-03-11.md",
-    "Semestre 9/TICS 2/Cátedra TICS 2.md",
     "Sin título.md",
     "Bienvenido.md",
-    "Semestre 9/Arquitectura de Software/Cátedra Arqui. de Software.md",
     "Semestre 9/IOT/Cátedra IOT.md",
     "Semestre 9/TICS 2",
     "Semestre 9/Arquitecturas Emergentes/Cátedra.md",
-    "Semestre 9/Arquitecturas Emergentes",
     "Semestre 9/Data Science/Info.md",
     "Semestre 9/Data Science/Cátedra.md",
     "Semestre 9/Arquitectura de Software/Info.md",
