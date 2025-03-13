@@ -1,8 +1,8 @@
-#### 6 de Marzo
+## 6 de Marzo
 
 - Edge, fog y cloud.
 - Objetos como fuentes de info. 
-##### Características:
+### Características:
 - Nodos inalámbricos de corto alcance (o largo con limitaciones)
 - Poca capacidad de procesamiento
 - Alimentados a batería
@@ -19,7 +19,7 @@
 ### Problemas:
 Control de acceso, Enrutamiento, Mantención de topología (lista de vecinos), Asignación de recursos. Consumo, Gestión.
 
-#### 10 de Marzo
+## 10 de Marzo
 
 ### Datos
 
@@ -46,7 +46,7 @@ La distribución de los nodos:
 - Reemplazo de baterias es posible? 
 - Alimentación a partir de fuentes externas.
 	- Sol, movimiento, aire, etc.
-- Duración esperada (Cambio de baterías en TODOS LOS NODOS a la veztgfgtgf)
+- Duración esperada (Cambio de baterías en TODOS LOS NODOS a la vez)
 - Deteccion de fallas (algoritmos de verificación de funcionamiento correcto)
 - Incorporación de nuevos nodos en el funcionamiento de la red.
 
@@ -55,3 +55,10 @@ La distribución de los nodos:
 - Limitaciones en recursos disponibles: reúso de recursos?
 - Convivencia con otras redes en mismo espectro/protocolo
 - Sistema de captura asociado a un proveedor.
+
+## Clase 13 de Marzo
+### Aplicaciones de la IOT
+La IOT tiene aplicaciones en la agricultura, en la salud, industria, seguridad, hogar, ambiente, transporte, militar, instrumentación.
+- Transporte y Movilidad:
+	- Monitorio y Seguimiento de Vehículos (UBER)
+	- Monitoreo de movimiento de usuariosz

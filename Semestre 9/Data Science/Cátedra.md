@@ -1,11 +1,11 @@
-#### 6 de Marzo
+## 6 de Marzo
 La ciencia de datos es utilizar grandes vólumenes de datos para solucionar problemas. Encontrar patrones y tendencias y ayudar en la toma de decisiones de un negocio.
 - Esta engloba 
 - Campo interdisciplinario que usa técnicas específicas de las estadisticas y la ciencia de computación para sistematicamente extraer conocimiento de los datos.|
 
-#### 10 de Marzo
+## 10 de Marzo
 Aprendizaje reforzado: Los datos retroalimentan al modelo para que siga ajustándose.
-## Frameworks
+### Frameworks
 Formas de ordenar el trabajo.
 
 - **KDD:** Knowledge Discovery in Databases. Enfocado en los datos.
@@ -40,7 +40,7 @@ Formas de ordenar el trabajo.
 
 Hay veces donde datos son insuficientes y eso requiere devolverse al comienzo.
 
-## Roles en la industria.
+### Roles en la industria.
 
 - **Data scientist**
 	- Encargado de todo el flujo, análisis de un proyecto ML. Recibe la data para sus análisis desde los Data Engineer y lo entrega al cliente con su interpretación.
@@ -64,3 +64,15 @@ Hay veces donde datos son insuficientes y eso requiere devolverse al comienzo.
 	- Realizar análisis que no requieran de un modelo ML. Encargado de la visualización en Dashboards o proveer datos al resto de la organización.
 	  
 
+## 13 de Marzo
+
+### Obtención de Datos en Frameworks de Data Science
+#### Fuentes de datasets: **-5 décimas proyecto**
+- Kaggle
+- UCI Machine Learning Repo.
+- AWS
+#### Fuentes Nacionales Gubernamentales: **+0 puntos Proyecto**
+#### Crear o diseñar fuentes de datos propias: **+5 décimas proyecto**
+- WebScrapping
+- BDD de la Empresa/institución
+- Cámara en su bolsillo
