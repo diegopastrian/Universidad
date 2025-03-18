@@ -67,3 +67,43 @@ Problema de **Satisfacción de Restricciones**.
 	- **Vacío de dominio**: No puedo asignarle un valor a una variable.
 	- **DeadEnd**: Camino sin salida, no se puede hacer nada más por ese camino.
 	- En ese caso, me devuelvo al paso anterior y cambio esa variable para cambiar las variables que están siendo bloqueadas. (Reduzco la cantidad de asignaciones que no me llevarán a una solución).
+
+## Clase 17 de Marzo
+
+### Forward Checking
+
+- Esta técnica mira hacia **Adelante**.
+- Reducir los dominios de las variables que aún no tienen un valor. -> Disminuye el **trashing**.
+- Hay más checkeos: Se realizan más pruebas.
+- Se podría combinar con otros algoritmos.
+	- Por ejemplo con CBJ: Se reduce el dominio hacia adelante, al llegar a un deadend, se hace el salto a la variable con conflicto. 
+- Depende del tiempo de CPU.
+
+### MFC: Lazy Forward Checking
+
+Realiza lo mismo que Forward checking. Al encontrar el primer valor factible, inmediatamente continúa hacia la siguiente variable.
+- Es un algoritmo completo.
+
+### Orden de instanciación
+
+El orden en el cual son instanciadas las variables afecta el tamaño del árbol de búsqueda.
+ -> Desempeño del algoritmo de búsqueda.
+ - **Heurísticas de selección de variable**: Procedimiento generalmente no costoso computacionalmente para seleccionar la siguiente variable a ser instanciada.
+	 - En general están basadas en la premisa **fail-first** “Para tener éxito, se debe intentar primero en donde más probablemente se fallará”.
+	 - Offline: Se realiza el proceso antes de la búsqueda.
+	 - Online: Se realiza el proceso durante la búsqueda. te amo 
+	 - **Ejemplos**:
+		 - Seleccionar la variable con menor dominio.
+		 - Seleccionar aquella con más restricciones.
+- **Técnicas de Preproceso**:
+	- Restricción BINARIA: tiene dos variables.
+	- Restricción UNARIA: una variable.
+	- Nodo consistencia: Para toda restricción unaria, los valores cumplen con la restricción.
+		- **Ejemplo:**
+			- *Restricciones*:
+				- $x_2$ > 1
+				- $x_1 + x_2$ > 5
+			- *Dominio variables*:
+				- $x_1 : \{2,3,4,5,6\}$
+				- $x2: \{0,1,2,3\}$
+

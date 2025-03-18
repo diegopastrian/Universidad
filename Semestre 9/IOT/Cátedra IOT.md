@@ -61,4 +61,16 @@ La distribución de los nodos:
 La IOT tiene aplicaciones en la agricultura, en la salud, industria, seguridad, hogar, ambiente, transporte, militar, instrumentación.
 - Transporte y Movilidad:
 	- Monitorio y Seguimiento de Vehículos (UBER)
-	- Monitoreo de movimiento de usuariosz
+	- Monitoreo de movimiento de usuarios.
+	- Seguridad del pedido
+
+## Clase 17 de Marzo
+
+###  Aplicaciones de la IOT
+#### Industria
+- Monitoreo de refinerías
+- Monitoreo de vibraciones en túneles de minería
+- Monitoreo y seguimiento de máquinas en minas a cielo abierto
+	- Monitorear cuando se sale el diente de una __
+- Monitoreo de fallas en rodillos de cintas transportadoras
+- 

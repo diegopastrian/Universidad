@@ -76,3 +76,69 @@ Hay veces donde datos son insuficientes y eso requiere devolverse al comienzo.
 - WebScrapping
 - BDD de la Empresa/institución
 - Cámara en su bolsillo
+
+## 17 de Marzo
+### Tipos de Datos
+- Datos **Categóricos**:
+	 Valores que representan etiquetas, categorías o grupos.
+	- *Ordinales*: Tienen orden o jerarquía.
+		- Por ejemplo: nivel de educación, nivel de satisfacción
+	- *Nominales*: No tienen un orden específico.
+		- Por ejemplo: color favorito, nacionalidad.
+- Datos **Numéricos**:
+	  Valores que representan cantidades o medidas.
+	- *Continuos*: Pueden tomar cualquier valor en un rango.
+	- *Discretos*: Valores enteros.
+
+### Problemas con los Datos
+#### Datos Faltantes:
+- **Missing Completely At Random (MCAR):**
+	- Data perdida distribuida de forma uniforme, por ende no se relaciona con otras variables del dataset.
+	- *Posible solución:*
+		- Eliminar observaciones (Eliminar la fila completa)
+		- Imputar una medida de tendencia central (Media, Mediana, Moda)
+- **Missing at Random (MAR)**:
+	- Datos sesgados, la data perdida no se distribuye de forma aleatoria.
+	- Por ejemplo: IQ Score por edad, de los 25 a 31 años no hay datos (no se realizó preguntas a tales edades).
+	- *Posible solución:*
+		- Imputar usando la info. de las otras variables.
+			- Máxima Verosimilitud
+			- KNN
+- **Missing NOT at Random**:
+	- Datos faltantes por razones relacionadas con el valor mismo de al variable
+	- Data perdida difiere sistemáticamente de datos observados y es no-ignorable.
+	- *Posible solución:*
+		- Marcado AD-HOC
+		- Depende...
+		- Encontrar más data.
+
+#### Datos incorrectos
+- **Datos fuera de rango (OOR)**:
+	- Dato falso, incorrecto. El outlier es un dato REAL.
+	- Observaciones imposibles que se dan porque están fuera del espacio definido para la variable.
+	- Edades negativas, o muy grandes.
+	- *Diagnóstico:*
+		- Umbral de máximo/mínimo teórico
+	- *Solución:*
+		- Tratar como un missing value
+		- Imputación iterativa (LGBM - K-NN)
+- **Data Ruidosa**
+	- Para imágenes:
+		- Blur
+		- Frequencial
+		- Sobre/bajo exposición
+		- Gausiano
+	- De una imagen muy ruidosa se puede llegar a una real mediante IA.
+	- Se entrena el modelo con imagen para ensuciarlas.
+ - **Inconsistencia de Formato**
+	 - Excel como un problema.
+	 - Se diagnostica con la caída del código.
+	 - *Solución:*
+		 - Diccionarios
+		 - Jugar con Python
+#### Datos inútiles
+- Features completamente concentrados
+- Outliers unidimensionales y multidimensionales
+- Skewed numerical features
+- Colinealidad entre features
+- Information Leakage

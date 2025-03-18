@@ -56,3 +56,10 @@ El diseño general del sistema genera problemas estructurales.
 		- Encriptación
 		- Integridad
 		- No repudio
+## 18 de Marzo
+### Proyecto:
+- Realizar un **Sistema**
+- OBJETIVO: ¿Acción o resultado?
+- Se debe usar arquitectura **SOA** (Service orientes architecture).
+	- Requerimientos | Servicios
+	- Arriba los usuarios, abajo quienes satisfacen sus requerimientos.
