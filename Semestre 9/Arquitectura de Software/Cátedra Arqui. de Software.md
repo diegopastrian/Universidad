@@ -1,4 +1,4 @@
-#### 7 de marzo
+## 7 de marzo
 
 **¿Qué es la arquitectura de Software?**
 Definir componentes organizados que permitan satisfacer requerimientos funcionales del cliente. Relaciones de comunicación entre componentes. -IEEE
@@ -26,8 +26,8 @@ El diseño general del sistema genera problemas estructurales.
 - Puente de comunicación entre equipos dev
 - Interfaz cliente/equipo técnico
 ***
-#### 11 de marzo
-##### Requerimientos no funcionales
+## 11 de marzo
+### Requerimientos no funcionales
 
 - **Performance** 
 	- Sistema debe tener pocos componentes -> menos relaciones entre componentes.
@@ -56,10 +56,47 @@ El diseño general del sistema genera problemas estructurales.
 		- Encriptación
 		- Integridad
 		- No repudio
+			- El emisor del mensaje no puede desconocer la acción
+			- Firma digital
+			- Encriptación{Datos+Hash+Firma digital} -> Más tiempo de procesamiento
 ## 18 de Marzo
-### Proyecto:
-- Realizar un **Sistema**
-- OBJETIVO: ¿Acción o resultado?
-- Se debe usar arquitectura **SOA** (Service orientes architecture).
-	- Requerimientos | Servicios
-	- Arriba los usuarios, abajo quienes satisfacen sus requerimientos.
+
+### Soa (Service oriented Architecture)
+
+SOA es una Arquitectura orientada a servicios.
+-  Requerimientos | Servicios
+-  Arriba los usuarios, abajo quienes satisfacen sus requerimientos.
+-  **Servicios:**
+	-  Reciben una transacción.
+	- Son **independientes** e interactúan entre sí
+	-  Estos resuelven los requerimientos funcionales.
+	-  Se comunican mediante protocolos.
+![[Pasted image 20250318150528.png]]
+Si falla el bus, existe un problema.
+
+### Requerimientos no funcionales
+
+- **Confiabilidad**
+	- Tiempo en el que el sistema está *disponible*.
+	- Sistema es confiable si está SIEMPRE disponible / si se cae, se recupera en el menor tiempo posible.
+	- Componentes redundantes:
+		- Componentes que hagan lo mismo.
+		- En SOA, si IP1 cae, IP2 sigue activo.
+	- Facil migración de componentes.
+	- Bajo acoplamiento.
+	- Control distribuido.
+	- Operación activo-activo o activo-pasivo.
+		- Activo-Activo:
+			- Ambos procesan, si se cae uno el otro que sobrevive sigue procesando.
+			- La falla no es de notar (a menos que ambos caigan).
+		- Activo pasivo:
+			- Dos instancias, una procesa y la otra espera que la copia principal se caiga.
+	- 99,999%: Porcentaje de operativididad que tiene que tener un sistema para considerarse confiable (8 horas caido al año).
+	
+- **Integrabilidad**
+	- Integración con otros sistemas.
+		- Por ejemplo: autenticación con Google, métodos de pago
+- **Portabilidad**
+	- Independencia de plataforma.
+	- (Según Giadach, no existe).
+		- Una VM adecua tal programa para cada SO.
