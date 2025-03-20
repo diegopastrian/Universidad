@@ -107,3 +107,41 @@ El orden en el cual son instanciadas las variables afecta el tamaño del árbol 
 				- $x_1 : \{2,3,4,5,6\}$
 				- $x2: \{0,1,2,3\}$
 
+## Clase 20 de Marzo 
+Espacio de búsqueda continuo: $x_{1} \in [0,1]$
+### Interval Branch & Bound
+- Aproximaciones de punto
+- Computadoras no tienen precisión infinita decimal -> aproximaciones de punto flotante.
+-  Si hay solución óptima, esta se encuentra en un **intervalo de precisión arbitraria**.
+	-  Esto quiere decir que la solución se encuentra en tal intervalo.
+- Cada nodo del árbol tiene un valor limite superior(UB) y uno inferior(LB). En función de esos límites, el método va descartando ciertas ramas del árbol.
+
+**Bisección**
+- Dividir el dominio de algunas variables por la mitad. Se crean dos nuevos nodos.
+- Solo hay métodos heurísticos para esto. Ven información parcial del problema para elegir la variable a bisectar
+	- *Largest-first:* Dominio más grande
+	- *Round-Robin:* Van en orden
+	- *Smear-Based:* Miden el impacto de las variables en el problema
+
+**Filtrado**
+Elimina desde los bordes del intervalo, valores que no son parte de alguna solución.
+- Tambien pueden eliminarse nodos que con seguridad no ayudarán a encontrar un mínimo más pequeño que el actual.
+
+**Upper bounding**
+- En cada nodo busca soluciones factibles, mínimos locales.
+- En general se utilizan métodos de búsqueda locales por el costo computacional.
+- *En el área*: Uso de técnicas iterativas de búsqueda local y metaheurísticas como: Simulated Annealing, PSO y paralelización con threads.
+
+**Selección de nodo**
+- Elegir alguno de los nodos y procesarlo con los métodos anteriores.
+- Al igual que con bisección, se utilizan métodos heuristicos. Por ej minLB.
+- Mejora de lo anterior, FeasibleDiving (minLB + Búsqueda en profundidad)
+- *En el área:* Técnicas de aprendizaje por refuerzo para seleccionar la heurística más adecuada (hiperheurísticas)
+
+### Beam Search
+- Técnica incompleta.
+- Adaptación de búsqueda de árbol: solo los nodos más prometedores se consideran.
+- **¿Cómo se eligen los $W$ mejores?**
+	- Depende del problema. 
+	- **Greedy:** Llega a una solución, evaluando qué tan prometedora es esta solución parcial.
+	- Doble refuerzo.
