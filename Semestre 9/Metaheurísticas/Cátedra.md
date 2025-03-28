@@ -107,41 +107,89 @@ El orden en el cual son instanciadas las variables afecta el tamaño del árbol 
 				- $x_1 : \{2,3,4,5,6\}$
 				- $x2: \{0,1,2,3\}$
 
-## Clase 20 de Marzo 
-Espacio de búsqueda continuo: $x_{1} \in [0,1]$
+## Clase 20 de Marzo
+**Espacio de búsqueda continuo**: $x_{1} \in [0,1]$
+
 ### Interval Branch & Bound
-- Aproximaciones de punto
-- Computadoras no tienen precisión infinita decimal -> aproximaciones de punto flotante.
--  Si hay solución óptima, esta se encuentra en un **intervalo de precisión arbitraria**.
-	-  Esto quiere decir que la solución se encuentra en tal intervalo.
-- Cada nodo del árbol tiene un valor limite superior(UB) y uno inferior(LB). En función de esos límites, el método va descartando ciertas ramas del árbol.
+- **Aproximaciones de punto**
+  - Las computadoras no tienen precisión infinita decimal, por lo que se usan aproximaciones de punto flotante.
+  
+- **Solución óptima**
+  - Si existe una solución óptima, esta se encuentra en un **intervalo de precisión arbitraria**.
+  - Esto quiere decir que la solución está dentro de un intervalo determinado por la precisión deseada.
 
-**Bisección**
-- Dividir el dominio de algunas variables por la mitad. Se crean dos nuevos nodos.
-- Solo hay métodos heurísticos para esto. Ven información parcial del problema para elegir la variable a bisectar
-	- *Largest-first:* Dominio más grande
-	- *Round-Robin:* Van en orden
-	- *Smear-Based:* Miden el impacto de las variables en el problema
+- **Árbol de búsqueda**
+  - Cada nodo del árbol tiene un valor límite superior (UB) y uno inferior (LB).
+  - En función de esos límites, el método va descartando ciertas ramas del árbol.
 
-**Filtrado**
-Elimina desde los bordes del intervalo, valores que no son parte de alguna solución.
-- Tambien pueden eliminarse nodos que con seguridad no ayudarán a encontrar un mínimo más pequeño que el actual.
+#### Bisección
+- **Definición**: Dividir el dominio de algunas variables por la mitad para crear dos nuevos nodos.
+- **Métodos heurísticos**:
+  - **Largest-first**: Elige el dominio más grande.
+  - **Round-Robin**: Va en orden.
+  - **Smear-Based**: Mide el impacto de las variables en el problema.
 
-**Upper bounding**
-- En cada nodo busca soluciones factibles, mínimos locales.
-- En general se utilizan métodos de búsqueda locales por el costo computacional.
-- *En el área*: Uso de técnicas iterativas de búsqueda local y metaheurísticas como: Simulated Annealing, PSO y paralelización con threads.
+#### Filtrado
+- **Eliminación de valores**:
+  - Se eliminan desde los bordes del intervalo aquellos valores que no son parte de alguna solución.
+  - También se eliminan nodos que con seguridad no ayudarán a encontrar un mínimo más pequeño que el actual.
 
-**Selección de nodo**
-- Elegir alguno de los nodos y procesarlo con los métodos anteriores.
-- Al igual que con bisección, se utilizan métodos heuristicos. Por ej minLB.
-- Mejora de lo anterior, FeasibleDiving (minLB + Búsqueda en profundidad)
-- *En el área:* Técnicas de aprendizaje por refuerzo para seleccionar la heurística más adecuada (hiperheurísticas)
+#### Upper Bounding
+- En cada nodo, se buscan soluciones factibles y mínimos locales.
+- **Métodos de búsqueda**: En general, se utilizan métodos de búsqueda locales debido al costo computacional.
+  - En el área: Uso de técnicas iterativas de búsqueda local y metaheurísticas como:
+    - Simulated Annealing
+    - PSO (Optimización por enjambre de partículas)
+    - Paralelización con threads.
+
+#### Selección de Nodo
+- Elegir un nodo y procesarlo con los métodos anteriores.
+- **Métodos heurísticos**: Como por ejemplo, el **minLB**.
+- **Mejora**: Feasible Diving (minLB + Búsqueda en profundidad).
+- **En el área**: Técnicas de aprendizaje por refuerzo para seleccionar la heurística más adecuada (hiperheurísticas).
 
 ### Beam Search
-- Técnica incompleta.
-- Adaptación de búsqueda de árbol: solo los nodos más prometedores se consideran.
-- **¿Cómo se eligen los $W$ mejores?**
-	- Depende del problema. 
-	- **Greedy:** Llega a una solución, evaluando qué tan prometedora es esta solución parcial.
-	- Doble refuerzo.
+- **Técnica incompleta.**
+- Adaptación de la búsqueda en árbol: Solo los nodos más prometedores se consideran.
+  
+#### ¿Cómo se eligen los $W$ mejores?
+- Depende del problema.
+- **Greedy**: Llega a una solución evaluando qué tan prometedora es la solución parcial.
+- **Doble refuerzo**: Se puede incrementar el valor de $W$ para buscar más opciones.
+
+### Monte Carlo Tree Search (MCTS)
+1. **Selección:**
+   - Se busca un nodo prometedor dentro del árbol de búsqueda.
+   - La evaluación de "prometedor" depende del problema específico.
+1. **Expansión:**
+   - Se selecciona el siguiente paso a tomar. Este paso se elige aleatoriamente, similar a Monte Carlo.
+1. **Simulación:**
+   - Se simula el camino a seguir según la elección hecha en la expansión.
+   - Se realiza la retropropagación (backpropagation) para actualizar la información del árbol.
+1. **Evaluación:**
+   - Si el camino resulta ser malo, el nodo pierde relevancia y se considera menos prometedor.
+   - La retropropagación convierte a los nodos más prometedores en futuros candidatos a explorar.
+
+Este proceso permite explorar el árbol de manera eficiente, favoreciendo las decisiones más prometedoras con el tiempo.
+
+### A* (A-estrella)
+
+- **Algoritmo legendario de IA** utilizado en planificación de caminos.
+- Combina **heurísticas** y **búsqueda de menor camino** para encontrar la ruta más eficiente.
+
+#### Funcionamiento:
+- A* es un algoritmo del tipo **"best-first"**, donde cada nodo se evalúa mediante la fórmula:
+  $$f(v) = h(v) + g(v)$$
+  Donde:
+  - **f(v)**: Función de evaluación del nodo.
+  - **h(v)**: Heurística, estimación de la distancia restante hasta el objetivo. **No debe sobreestimar**.
+  - **g(v)**: Costo acumulado desde el nodo inicial hasta el nodo actual.
+
+#### Explicación de las funciones:
+- **h(v)** (heurística): Estima la distancia restante al objetivo. Es importante que no sobreestime el valor real para evitar soluciones incorrectas.
+- **g(v)** (costo acumulado): Es la distancia recorrida desde el nodo inicial hasta el nodo actual.
+
+#### Propiedades:
+- A* balancea entre el **costo del camino recorrido** (g(v)) y la **estimación de la distancia al objetivo** (h(v)), asegurando que siempre encuentra el camino más corto y eficiente.
+
+## 

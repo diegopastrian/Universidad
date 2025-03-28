@@ -74,3 +74,39 @@ Como una descripción arquitectónica. Se necesitan modelos para orientar la per
 - Rombo Blanco: Agregación. Dependencia débil.
 - Rombo Negro: Composición.  Dependencia fuerte.
 
+## 20 de Marzo
+### ¿Dónde desplegar?
+
+- **Mis dispositivos, en mis dependencias.**
+	- On-premise: Mis dependencias, donde yo tengo acceso.
+		- Cuántas concurrencias (solicitudes al mismo tiempo) soporta.
+		- En este caso podría ser 8 concurrencias.
+	- On-site
+	- Data-center propio
+- **Mis dispositivos, dependencias de terceros.**
+	- Housing
+		- Maquinas de mi propiedad en el data-center de mi proveedor.
+	- Data-center proveedor.
+		- Por ejemplo, se arrienda un piso en entel.
+- **Externalizar en infraestructura de terceros.**
+	- Cloud Provider
+	- *IAAS* Infraestructure as a Service
+
+### ¿Qué es la nube?
+- La computación en la nube es una metáfora para referirnos a un modelo de consumo de tecnología en el cual se consumen infraestructuras o servicios por los cuales se paga su uso.
+- Se consumen datacenters de terceros.
+- Virtualización
+#### Modelos de servicio cloud
+- Saas
+- PaaS
+- IaaS
+ServesLess: Sin servidor. No es necesario adecuar el SO si solo se ocupa una BDD, con esto se provee directamente el acceso a la base de datos. 
+#### Modelo de responsabilidad compartida
+"El proveedor es responsable de la seguridad de la nube, el usuario es responsable de la seguridad en la nube".
+![[Pasted image 20250320180856.png]]
+
+#### Principales servicios
+- Computing
+- Maquina Virtual en A
+
+##   Clase 27 de Marzo

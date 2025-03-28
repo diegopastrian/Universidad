@@ -1,4 +1,4 @@
-## 6 de Marzo
+## 6 de Marzo 
 La ciencia de datos es utilizar grandes vólumenes de datos para solucionar problemas. Encontrar patrones y tendencias y ayudar en la toma de decisiones de un negocio.
 - Esta engloba 
 - Campo interdisciplinario que usa técnicas específicas de las estadisticas y la ciencia de computación para sistematicamente extraer conocimiento de los datos.|
@@ -142,3 +142,69 @@ Hay veces donde datos son insuficientes y eso requiere devolverse al comienzo.
 - Skewed numerical features
 - Colinealidad entre features
 - Information Leakage
+- **Features 100% concentrados**
+- Aquellas variables que no contienen información relevante deben ser eliminadas del dataset.
+	- Ejemplo: En el caso de la tabla, la universidad no tiene sentido porque no aporta información relevante respecto a las notas.
+
+| **Alumno** | **Universidad** | **Horas de Estudio** | **Notas** |
+| ---------- | --------------- | -------------------- | --------- |
+| Diego      | UDP             | 12                   | 70        |
+| Tobias     | UDP             | 10                   | 70        |
+| Jorge      | UDP             | 8                    | 65        |
+| Iván       | UDP             | 9                    | 66        |
+| Renato     | UDP             | 4                    | 40        |
+
+- **Outliers unidimensionales y multidimensionales**
+	- Son datos atípicos.
+	- No son datos inútiles. En algunos casos es exactamente lo que se busca.
+	- Diagnóstico unidimensionales:
+		- Visual con boxplots
+		- IQR
+	- Posible solución:
+		- Eliminar la variable
+		- Mantener y tener cuidado con las normalizaciones (ej. min_max_scaler).
+## 20 de Marzo
+#### Datos inútiles
+- **Features concentrados**: Eliminar variables sin información relevante.
+- **Outliers**: Datos atípicos, pueden ser útiles. Diagnóstico con **boxplots** y **IQR**. Posibles soluciones: eliminar o mantener con precaución (ej. **min-max scaler**).
+- **Skewed numerical features**: Proximamente...
+- **Colinealidad**: Variables independientes muy correlacionadas entre sí.
+- **Information Leakage**: Datos que comprometen el modelo.
+
+### Features 100% concentrados
+Eliminar variables que no aportan información relevante (Ej. universidad en la tabla siguiente).
+
+| **Alumno** | **Universidad** | **Horas de Estudio** | **Notas** |
+| ---------- | --------------- | -------------------- | --------- |
+| Diego      | UDP             | 12                   | 70        |
+| Tobias     | UDP             | 10                   | 70        |
+| Jorge      | UDP             | 8                    | 65        |
+| Iván       | UDP             | 9                    | 66        |
+| Renato     | UDP             | 4                    | 40        |
+
+### Outliers
+Son datos atípicos que no siempre son inútiles. Se pueden diagnosticar con **boxplots** o **IQR**. 
+Posibles soluciones: 
+- Eliminar la variable.
+- Mantener y normalizar con **min-max scaler**.
+
+### Multicolinealidad
+Ocurre cuando variables independientes están correlacionadas. Correlación no implica causalidad. El coeficiente de correlación está en el rango $[-1, 1]$. La fórmula es:
+
+$$
+P_{xy} = \frac{\text{desviación}(xy)}{\text{desviación}(x) \times \text{desviación}(y)}
+$$
+
+**-1** indica correlación negativa perfecta, **1** correlación positiva perfecta y **0** ninguna correlación.
+- Características muy correlacoinadas entre sí. 
+Si dos variables muy correlacionadas están presentes, no se sabrá a cuál echarle la culpa del resultado final de tal dato.
+
+### Information Leakage
+En un modelo supervisado, $Y = F(x) + E$, si hay información que se pasa de las $x$ al $Y$ hay info. Leakage.
+- Presencia de info. no disponible en el mundo real.
+- Esta información "filtrada" puede hacer que el modelo tenga un rendimiento artificialmente alto durante la fase de entrenamiento, pero cuando se aplica en datos nuevos (de prueba o reales), el rendimiento del modelo se degrada significativamente.
+- **Overfitting**
+
+## 24 de Marzo
+
+## 27 de Marzo

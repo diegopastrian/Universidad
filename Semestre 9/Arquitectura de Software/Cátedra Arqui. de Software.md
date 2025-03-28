@@ -100,3 +100,90 @@ Si falla el bus, existe un problema.
 	- Independencia de plataforma.
 	- (Según Giadach, no existe).
 		- Una VM adecua tal programa para cada SO.
+
+## 21 de Marzo
+### Requerimientos no funcionales
+- **Soportabilidad**
+	- Diagnóstico y corrección de incidencias.
+	- integración continua
+	- Bitácora de procesos
+	- Gestión de logs
+	- Documentación actualizada
+
+### Arquitecturas de Software Genéricas
+- Deben satisfacer los RF
+#### Diseño de Software
+- **Fase 0**: Analizar contexto.
+	- Requerimientos funcionales y no funcionales
+	- Ambiente Operacional
+	- Restricciones
+- **Fase 1**: Estructuración
+	- Identificar componentes y relaciones.
+	- Descompone el sistema en un conjunto de componentes.
+	- Utiliza un **diagrama de bloques** que muestra la estructura del sistema.
+	- Indica flujo de datos entre componentes.
+	- Muestra interfaces proveidas por sistema.
+	- **Interfaz**: conjunto de métodos y funciones que definen cómo interactúan los diferentes componentes o sistemas entre sí
+- **Fase 2**: Modelo de control
+	- Comportamiento componentes
+- **Fase 3**: Descomposición modular
+	- Diseño detallado
+
+#### Modelos de estructuración
+- **Cliente servidor**
+	- Cliente != Usuario.
+	- *Cliente* es un proceso que pide algo. El usuario utiliza este proceso para solicitar servicio al servidor. 
+	- Un *servidor* es un proceso que responde algo. Ofrecen servicios específicos. Satisfacen RF.
+- **Arquitectura Orientada a Servicios (SOA)**
+- **Modelo de Capas**
+- **Modelo Repositorio**
+- **Objetos distribuidos**
+- **Arquitectura Cloud**
+
+## 28 de Marzo
+### 🏦 Ejercicio SOA: Pequeño Banco
+
+#### Definición de las transacciones de cada servicio:
+![[Pasted image 20250328144508.png]]
+#### Especificación de interacciones entre servicios:
+- **Servicio de Giros** ➝ `Consulta de Saldos`
+- **Servicio de Depósitos** ➝ `Consulta de Datos`
+- **Servicio de Transferencias**  
+  - `Consulta de Datos`
+  - `Giros`
+  - `Depósitos`
+
+⚠️ **Punto único de falla**: Todos los servicios dependen del mismo servicio, lo que puede generar vulnerabilidades en el sistema.
+
+### SOA
+
+#### Bus de servicios
+- Punto local de la arquitectura SOA
+- Gestiona transacciones que recibe
+- Administra clientes y servicios conectados.
+- Su ubicación física es un contenedor docker y acepta conexiones en el puerto 5000
+- Se da cuenta que un servicio se fue por protocolos no recibidos ¿POR QUE?
+#### Estructura de transacciones
+Al bus le llega:
+- Transacción de requerimiento: (Entra al bus)
+   Largo | Servicio (ID) | Datos del requerimiento
+- Transacción de respuesta del servicio: (Sale del servicio)
+- Transacción de respuesta del bus: (Sale del bus)
+  Largo | Servicio (ID) | ST | Datos de la respuesta
+	- El ST: status transacción (OK, NK)
+
+Por qué se ocupa el largo? 
+- Si llega una misma operación separada en distintas transacciones, no sé donde comienza una ni donde comienza la otra. ¿Donde termina la transacción?
+- TCP/IP: Receptor debe volver a armar mensaje largo. Debe saber si algún bloque se perdió, con el largo sé cuanto debo recibir, si no recibo todo ese largo entonces se sabe que hubo algún problema.
+#### Servicio
+- Proceso que implementa una o más funcionalidades
+- Se conecta al bus y se identifica como servicio mediante transacción **sinit**
+![[Pasted image 20250328151927.png]]
+- Queda activo esperando transacciones
+
+#### Cliente
+- Proceso que implementa interfaz de usuario
+- Se conecta al bus
+- Envía transacción de requerimiento
+- Espera la respuesta del bus
+![[Pasted image 20250328152858.png]]

@@ -73,4 +73,15 @@ La IOT tiene aplicaciones en la agricultura, en la salud, industria, seguridad, 
 - Monitoreo y seguimiento de máquinas en minas a cielo abierto
 	- Monitorear cuando se sale el diente de una __
 - Monitoreo de fallas en rodillos de cintas transportadoras
-- 
+
+
+## Clase 20 de Marzo
+
+### Áreas de estudio
+- Redes
+	- PHY
+	- MAC
+	- Enrutamiento
+	- Aplicación:
+		- ¿Para qué? Análisis de cómo la aplicación condiciona qué tecnologias utiliza en los otros puntos.
+		- 
