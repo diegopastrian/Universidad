@@ -192,4 +192,177 @@ Este proceso permite explorar el árbol de manera eficiente, favoreciendo las de
 #### Propiedades:
 - A* balancea entre el **costo del camino recorrido** (g(v)) y la **estimación de la distancia al objetivo** (h(v)), asegurando que siempre encuentra el camino más corto y eficiente.
 
-## 
+## Clase 24 de Marzo
+
+### Técnicas de resolución 
+
+Hay dos tipos de técnicas incompletas.
+
+#### - Constructivas
+- No requieren  de solución inicial.
+- Van construyendo la solución:
+	- Asigna iterativamente valores a las variables del problema.
+	- Manejan soluciones parciales.
+	- A partir de la información disponible, se definen **reglas locales** (técnicas *greedy*, se toman decisiones en base a lo mejor del momento sin pensar a futuro).
+##### Greedy
+¿Qué se necesita para definirlo?
+- Representación: Interpretar la estructura de la solución
+- Función de evaluación / miope: Evalúa la opción a realizar.
+Puede ser:
+- **Determinista**: Llega siempre al mismo resultado a pesar de múltiples iteraciones del mismo algoritmo.
+- **Estocástico**: No hay movimiento a la mejor solución, se asigna una probabilidad a las alternativas a partir de una función miope.
+
+#### - Perturbadoras
+- Requieren de una o más soluciones iniciales.
+- Modifican una solución aplicando movimiento o función de vecindario.
+
+### GRASP
+Se basa en *Greedy*.
+- un greedy estocástico y algoritmo de búsqueda local.
+	- A. Búsqueda local: Se llega a solución, esa la mejoro localmente. Por ejemplo, Hill Climbing.
+- En lugar de elegir la mejor alternativa con función miope, se hace ranking de las mejores alternativas y se asigna probabilidad a cada una. Así existe variabilidad en las soluciones.
+- Al construir la solución, se mejora con búsqueda local. Si no mejora, se construye una solución nuevamente (Con otra combinación del paso 1).
+
+##  Clase 27 de Marzo
+
+### Metaheurísticas
+- Encuentran soluciones aceptables a problemas difíciles en tiempos razonables.
+- No garantizan encontrar óptimo global.
+- **Exploración(Diversificación)**: Buscar zonas comprometedoras del espacio de búsqueda. 
+- **Explotación(Intensificación)**: Centrar la búsqueda dentro de una región particular del espacio de búsqueda
+
+#### Hill Climbing
+- Solución única (O de trayectoria). Es una técnica de **explotación**.
+- Es perturbativo: 
+	- Comienza con una solución inicial (factible o infactible)
+	- Esa solución se genera de forma aleatoria o con greedy.
+	- Con *operadores de movimiento* se mejora dicha solución.
+- Entonces, FO mide la calidad de la solución.
+- Se necesita uno (o más) movimientos para recorrer el *vecindario*
+	- Criterio para seleccionar variable a modificar
+	- Criterio para elegir valor para tal variable a modificar
+- Con operadores de movimiento, se mejora tal solución.
+
+#### Hill Climbing Mejor-Mejora
+- Inicializar una solución a partir de criterio heurístico o aleatorio.
+- Mientras no se cumpla el criterio de parada (No hay mejora, tiempo, iteraciones...)
+	- Generar vecindario a partir del movimiento elegido y conservar mejor solución del vecindario como solución actual
+- Mostrar solución + Valor FO + tiempo
+
+#### Hill Climbing Alguna-Mejora
+- El vecindario de una solución puede ser muy grande.
+- En tal caso, solo se genera el vecindario hasta el punto de encontrar la primera solución que mejore la actual.
+#### Hill Climbing con Restart
+- Puede estancarse en óptimos locales.
+- Recomenzar algoritmo con nueva solución cuando se quede estancado.
+- Desventaja:
+	- Pérdida de información valiosa durante la búsqueda.
+- ¿Qué pasa si utilizo este método creando la solución inicial con un greedy determinista?
+
+#### Escapar de óptimos locales
+- Además del restart, otra forma es aceptar soluciones que empeoren la calidad de la solución actual.
+- El problema es que se puede entrar a un ciclo.
+	- Solución: *Tabú Search*
+## Clase 31 de Marzo
+### Tabu Search
+
+La lista tabú almacena movimientos prohibidos, en cada iteración se elige el mejor movimiento factible no-tabú. 
+- Esta lista se actualiza en forma de FIFO.
+- Su largo controla la memoria del proceso de búsqueda.
+	- corta -> controla áreas reducidas 
+	- larga -> controla áreas grandes
+- Restricciones tabú: Restringe la busqueda al clasificar ciertos movimientos como prohibidos para evitar caer en soluciones recientemente generadas.
+- Criterio de aspiración: Liberar en la búsqueda por medio de función de memoria 
+
+**Pseucódigo**:
+Proceso Tabu Search  
+	sol-actual = Inicialización  
+	lista-tabú = Vacía  
+	Mientras (No se cumpla el criterio de parada) Hacer  
+		Seleccionar la mejor solución no tabú del vecindario y almacenar como  
+		sol-actual, actualizar lista tabú  
+		Si (fo(sol-actual) es mejor que fo(mejor-sol))  
+			mejor-sol = sol-actual  + tiempo 
+	Fin Mientras  
+Fin Proceso Tabu Search
+
+Exploración y explotación en TS
+- explotar/Intensificar: búsqueda local (elementos de hill-climbing)
+- exploracion/diversificación: A través de la lista tabú
+- Balance estático: a través del tamaño de la lista tabú.  
+	- Lista tabú larga: gran diversificación y poca intensificación.  
+	- Lista tabú corta: gran intensificación y poca diversificación.
+- 
+primer movimiento importante.
+lista tabu permite no mover hacia el mismo lugar
+![[Pasted image 20250331120821.png]]
+![[Pasted image 20250331121017.png]]
+en iteración 3-4 a pesar de estar en lista tabú por criterio de aspiración, como la FO queda mejor que nunca se hace igual el swap (5,4)
+
+## Clase 03 de Abril
+
+### Simulated Annealing
+
+- Incorpora estrategia para impedir óptimos locales.
+- Permite movimientos a soluciones que empeoren la FO. Se comienza con "temperatura alta".
+	- Soluciones que empeoren la FO pueden ser aceptadas con mayor probabilidad que más tarde cuando la "temperatura disminuye"
+	- Soluciones que mejoran la FO siempre son aceptadas.
+
+- **Probabilidad de aceptación**
+	- Distribución de Boltzmann:
+$$P(temperatura,sol_{nueva},sol_{actual}) = e^{\triangle_{obj}/ T}$$  $$\triangle_{obj} = -|sol_{nueva} - sol_{actual}|$$
+	- Valor negativo, siempre implica empeoramiento en la calidad de las soluciones.
+	- La temperatura (parámetro), determina la probabilidad de aceptación de soluciones que no mejoran la solución actual.
+	- A cierta temperatura, varios intentos de nueva solución son explorados.
+	- Cuando se alcanza un estado de equilibrio, temperatura disminuye gradualmente.
+
+- Entonces, ese cálculo sería la probabilidad de tomar una solución que empeora la FO. Hasta que haya condición de equilibrio, 
+- ![[Pasted image 20250406195515.png]]
+- Ingredientes:
+	- HC (representación, evaluación, operadores de vecindario)
+	- Función de probabilidad de aceptación (Boltzmann)
+	- Temperatura inicial y final.
+	- Proceso de enfriamiento
+- **Aceptación de movimientos**
+	- La probabilidad de aceptar un movimiento que no mejora la solución actual sería
+	- $P(\triangle_{obj},T)>R$
+	- R: Número aleatorio entre [0,1].
+- **Estado de equilibrio**
+		- Antes de bajar la temperatura, se requieren ciertas iteraciones para explorar soluciones sobre la temperatura actual  hasta alcanzar un *estado de equilibrio*. 
+	- Un número suficiente de movimientos debe ser aplicados. ¿Pero cuantas iteraciones sobre una misma T?
+		- **Estático:**
+			- Número fijo de iteraciones sobre cada T
+			- Por ejemplo, explorar el 20% de la vecindad.
+		- **Adaptativo**:
+			- La cantidad de iteraciones se ajusta en función de los resultados obtenidos a la temperatura actual.
+			- Se puede usar la diferencia del mejor valor $f_h$ y el peor $f_l$ de la FO.
+			- $F\_ = 1- e^{- (f_{h}-f_{l}/f_{h})}$ 
+			- Y el numero de iteraciones para la siguiente temperatura seria:
+				$L = L_{B} + [L_{B}*F\_]$, $L_B$ número de iteraciones definido previamente.
+			- Si la diferencia entre $f_h$​ y $f_l$​ es grande, F−F_{-}F−​ será mayor y se explorarán más iteraciones, ya que hay mayor variabilidad en la calidad de las soluciones.
+			    - Si la diferencia es pequeña, el sistema está relativamente "estable", y se requieren menos iteraciones antes de bajar la temperatura.
+
+## 7 de Abril
+**Algoritmos de Trayectoria**
+### ILS
+- Solución inicial + Local search
+- Perturbo esa solución (movimiento), se hace local search.
+- En caso de ser mejor que la inicial, ahora esta queda como la mejor.
+- Parecido a GRASP
+
+### LNS
+- Destroy and repair.
+	- Destroy: Destruye estocásticamente parte de la solución
+	- Repair: Reconstruye la parte destruida, el vecindario es definido como las soluciones a las cuales se puede llegar a partir de dicha nueva (incompleta) configuración. Se puede usar método heurístico.
+- Así, se podría llegar a algo mejor. 
+
+### Metodología experimental
+Toda propuesta debe ser validada de manera cuantitativa, resolución de N instancias, mostrar resultados, comparar con el *estado del arte* y analizar.
+- Mencionar características de la máquina utilizada, realizar todos los experimentos en las *mismas condiciones*.
+- Validación a través de:
+	- Benchmarks de la comunidad, generalmente de distinta dificultad.
+	- Generar benchmarks
+		- Ser cuidadoso en cómo se muestran los resultados. Porque pueden ser sesgados.
+- Cuántas veces se debe ejecutar cada benchmark?
+	- Depende, determinista : 1 vez. Estocastico: ?
+	- Tests estadísticos -> t-test, wilcoxon, etc.

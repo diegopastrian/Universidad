@@ -208,3 +208,73 @@ En un modelo supervisado, $Y = F(x) + E$, si hay información que se pasa de las
 ## 24 de Marzo
 
 ## 27 de Marzo
+
+## 31 de Marzo
+### Transformación de los datos
+- Preprocesamiento:
+	- Borrar filas, limpieza
+- **Transformación**:
+	- Se agrega información nueva.
+#### Variables categóricas nominales
+- Al modelo no le sirven estas variables
+- De color a:
+	- Categoria única Color: green, red, black, orange
+	- One hot encoding. Categorías green, red, black, orange. Toman valores [0,1]
+		- Puede dropear algun color, debido a [0,0,0,1]. Dummy encoding
+	- No supervisado
+#### Variables categóricas ordinales
+- Original encoding: poor,good,very good, excellent
+- Ordinal encoding: 1,2,3,4.
+- Target encoding, modelo supervisado: Usar la info que tengo para ocupar el mejor número posible para el modelo. Está dado por una fórmula. Se traduce la palabra a un número que el modelo asocia mejor para acortar la Y.
+
+#### Variables numéricas
+- Transformaciones típicas en variables numéricas:
+	- Distribuciones asimétricas
+	- Normalización y escalamiento
+		- Estandarización
+
+#### Feature Engineering
+- Crear nueva data.
+	- Goods: lo que busco
+	- Bads: Lo que no busco
+- WOE & IV:
+	- WOE: $log(buenos/malos)$ Mide diferencia de proporción
+		- Supongamos que tenemos una variable categórica "Edad" (con categorías "Joven", "Adulto", "Mayor") y queremos calcular el WOE para cada categoría con una variable de clasificación binaria ("compró" = 1, "no compró" = 0).
+		- Calcular buenos: '1s' y malos: '0s'
+		- calcular WOE
+	- IV: Determina si una variable 
+- Catboost Encoding
+- Ser su propio jefe:
+	- Uno puede transformar las variables.
+
+### En datos inútiles:
+- Atributos numéricos de alta asimetría
+	- Box-Cox: transformación para arreglar asimetría
+	- Yeo-Johnson. Usan logaritmos ambas
+
+## 7 de Abril
+### Machine Learning
+- **Supervisado**
+	- Clasificación
+	- Regresión		
+	- Forecasting
+- **No Supervisado**
+	- Clustering
+	- Dimensionality Reduction
+#### Modelos supervisados
+##### Clasificación
+- Diseñado para asignar etiquetas en función de sus características.
+- El **límite de decisión** marca el límite para tomar la decisión de la etiqueta a asignar.
+- Lineal/No lineal: Tiene que ver con la forma del límite de decisión.
+**Random Forest**
+- Construye múltiples árboles de decisión aleatorios y combina predicciones para mejorar precisión y reducir sobreajuste.
+**Decision Trees**
+- Algoritmos de aprendizaje supervisado. Clasificación o regresión.
+- Gini index vs Entropy
+	- Medidas de impuridad o desorden en un dataset. El arbol de decisión minimiza esto o maximiza la ganancia de info para una mayor precisión en la predicción.
+**Gradient Boosting**
+- Basado en árboles de decisión, cada árbol aprende de los errores del anterior.
+	- Se denominan modelos ensamblados.
+##### Regresión
+
+#### Modelos no supervisados

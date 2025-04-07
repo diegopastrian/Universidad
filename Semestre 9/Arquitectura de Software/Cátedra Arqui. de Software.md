@@ -187,3 +187,121 @@ Por qué se ocupa el largo?
 - Envía transacción de requerimiento
 - Espera la respuesta del bus
 ![[Pasted image 20250328152858.png]]
+
+## 1 de Abril
+### Ejercicio
+Loto: Se escogen 6 números del 1 al 51. Se apuesta a que ellos sean los ganadores.
+- Se pide desarrollar un sistema que permita:
+	- Ingresar las apuestas de los jugadores
+	- Ingresar los números ganadores
+	- Ver el premio obtenido por apuesta
+
+![[Pasted image 20250401144957.png]]
+
+- Se tiene un medio de almacenamiento (BDD por ejemplo) para el sistema
+- Se deben definir interfaces
+### Programación de SOA 
+- Bus debe estar activado.
+- El servicio se debe activar
+	- Transacción sinit
+- El cliente se conecta al bus al puerto x.
+	- Está en un bucle infinito que permite al usuario definir transacción a realizar
+	- La diferencia con un servicio es que se identificó frente al bus.
+- El cliente manda una transacción: *00016***servi**Hello World
+	- Si el bus detecta que el servicio no existe, cancela la transacción. (ServiNKHelloWorld)
+	- En caso contrario, serviOKReceived
+
+### Modelo de Capas
+Conjunto de capas de Software que ofrecen servicios específicos.
+
+- Cada capa tiene interfaz claramente definida y aporta en lo que le corresponde al procesamiento de la transacción.
+- Comunicación entre componentes de capas vecinas.
+- Desarrollo independiente de las capas.
+
+- **Ventajas** 
+	- Desarrollo Incremental
+	- Flexible
+	- Mantenible
+- **Desventajas**
+	- Dificil estructuración
+	- Dependencias cruzadas
+	- Baja performance
+		- Para resolver un requerimiento se debe cruzar capas ida y vuelta. 
+		- Esto agrega latencia.
+
+#### Ejercicio Modelo de Capas
+Sistema de banco:
+- Consulta de saldo de cuenta.
+- Depósito en cuenta.
+- Giro desde una cuenta.
+- Transferencia entre cuentas.
+
+![[Pasted image 20250401153927.png]]
+- Transferencia: No me interesa consultar saldo.
+
+![[Pasted image 20250401154600.png]]
+- Problema: ¿Qué pasa si el usuario quiere conocer su saldo?
+ ![[Pasted image 20250401154743.png]]
+ Se generan **componentes fantasmas** sin utilidad! De tan solo 4 componentes se generan 14 componentes. También un cliente puede realizar un giro y un depósito sin una tranferencia de por medio.
+
+## 4 de Abril
+dasjkdsajdsajl
+### Modelo de repositorio
+Útil si hay gran cantidad de datos a ser compartidos por varias apps.
+- Gestión centralizada de datos
+- Almacenamiento centralizado
+Modelo Pasivo y proactivo.
+- **Pasivo**:
+	- Los componentes no interactuan de manera activa entre sí. Aplicaciones consultar el repo. al necesitar acceso a los datos.
+	- Los datos no son modificados automáticamente por el sistema. Requieren acción de consulta o actualización desde cliente o componente para ser utilizados.
+- **Proactivo**:
+	- Los cambios en los datos son gestionados activamente desde el repositorio. Permite a otros sistemas acceder a la información más reciente de forma eficiente.
+	- Centraliza el control, asegurando que modificaciones y acceso a datos se manejen de manera organizada.
+Se centra en el almacenamiento de datos en un repositorio central. 
+
+- **Ventajas**
+	- Modo eficiente de compartir los datos
+	- Administración centralizada de los datos
+	- Seguridad, escalabilidad, mantenibilidad
+- **Desventajas**
+	- Dificil cambio del modelo de datos
+		- El modelo se basa en una estructura de datos centralizada, por ende componentes del sistema dependen de tal estructura. Si se quiere modificar el modelo, todos los componentes deben ser actualizados también.
+	- Política centralizada de administración
+		- Toda la administración de datos está centralizada en un único repositorio. Si no está bien gestionado puede generar cuellos de botella. Todos los sistemas dependientes a él se verían afectados.
+	- Punto único de falla
+		- Si falla el punto central, todos los demás componentes se verían afectados.
+- Este modelo es útil cuando se necesita gestión eficiente de datos compartidos por múltiples aplicaciones o módulos, con control centralizado sobre los datos.
+
+## 7 de Abril
+
+### Modelo de responsabilidad compartida
+
+#### IAM
+- Global, no específica de alguna región. 
+- Administra usuarios que acceden a consola.
+	- Para muchos servicios AWS se utiliza de forma predeterminada.
+- Admite MFA (Multifactor Autenticator)
+- Identidad Federada: Empleados de la empresa no necesitan tener usuario/contraseña aparte para acceder a la nube. 
+
+- Usuario IAM
+- Credenciales de usuario IAM
+- Grupos de IAM
+- Políticas de IAM
+	- Versión: Versión del lenguaje de la política(fecha)
+	- Efecto: La instrucción permite o deniega el acceso.
+	- Acción
+	- ?
+
+### Cómputo como servicio
+- Especificaciones de hardware
+- Configuraciones lógicas: Ubicación de redes, reglas de firewall, autenticación y el sistema operativo a elegir
+- Pasos a seguir:
+	- Lanzar una instancia (VM)
+		- Instancia AWS
+		- Volumen: "Disco duro"
+	- Crear imagen
+	- Lanzar una instancia
+
+#### Ciclo de vida
+![[Pasted image 20250407181733.png]]
+

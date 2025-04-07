@@ -84,4 +84,13 @@ La IOT tiene aplicaciones en la agricultura, en la salud, industria, seguridad, 
 	- Enrutamiento
 	- Aplicación:
 		- ¿Para qué? Análisis de cómo la aplicación condiciona qué tecnologias utiliza en los otros puntos.
-		- 
+
+## Clase 31 de Marzo
+
+### Nodo - Hardware
+##### Fuente de poder
+- Proveer máxima energía posible respecto costo, volúmen, peso, tiempo recarga.
+- Baterías primarias no recargables, secundarias con recarga.
+	- Baja auto-descarga. Larga vida almacenada. Capacidad bajo carga
+	- Si procesador consume 1nJ
+
