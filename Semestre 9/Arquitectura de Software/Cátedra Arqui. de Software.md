@@ -245,7 +245,6 @@ Sistema de banco:
  Se generan **componentes fantasmas** sin utilidad! De tan solo 4 componentes se generan 14 componentes. También un cliente puede realizar un giro y un depósito sin una tranferencia de por medio.
 
 ## 4 de Abril
-dasjkdsajdsajl
 ### Modelo de repositorio
 Útil si hay gran cantidad de datos a ser compartidos por varias apps.
 - Gestión centralizada de datos
@@ -271,37 +270,45 @@ Se centra en el almacenamiento de datos en un repositorio central.
 	- Punto único de falla
 		- Si falla el punto central, todos los demás componentes se verían afectados.
 - Este modelo es útil cuando se necesita gestión eficiente de datos compartidos por múltiples aplicaciones o módulos, con control centralizado sobre los datos.
+### Objetos Distribuidos
+Objetos distribuidos a través de distintos nodos o máquinas de una red. Interactúan a través de una infraestructura de comunicación, como **ORB**.
+- **Objetos**: Unidades de software que encapsulan tanto datos como funcionalidades. Cada uno provee y recibe *servicios*.
+	- Al ser enviado, debe ser *serializado*. Al ser recibido debe ser *deserializado*.
+		- *Serialización*: Convertir objeto en un formato que pueda ser almacenado o enviado por la red.
+- **ORB**: *(Object Request Broker)* middleware que facilita la comunicación entre objetos distribuidos.
+	- Objetos invocan métodos de otros objetos a través de este.
+	- Maneja localización de objetos, comunicación de mensajes y gestión de invocaciones remotas.
 
-## 7 de Abril
+**Ventajas**
+- Diseño Flexible.
+- Fácil agregar objetos.
+- Configuración dinámica.
+- Escalabilidad, mantenibilidad.
+**Desventajas**
+- Compleja construcción.
+	- Interoperabilidad entre sistemas.
+	- Comunicación remota de objetos.
+- Bajo rendimiento.
+	- Latencia de red
+	- Serialización y deserialización (Costoso)
+## 8 de Abril
 
-### Modelo de responsabilidad compartida
+### Arquitectura Cloud
+- Externalización de servicios computacionales
+	- Infraestructura - IaaS
+	- Plataforma - PaaS
+	- Aplicación - SaaS
+- Recursos elásticos (Pay what you use)
+\**Profesor opina que esto va a acabar y existirá algo más*
 
-#### IAM
-- Global, no específica de alguna región. 
-- Administra usuarios que acceden a consola.
-	- Para muchos servicios AWS se utiliza de forma predeterminada.
-- Admite MFA (Multifactor Autenticator)
-- Identidad Federada: Empleados de la empresa no necesitan tener usuario/contraseña aparte para acceder a la nube. 
-
-- Usuario IAM
-- Credenciales de usuario IAM
-- Grupos de IAM
-- Políticas de IAM
-	- Versión: Versión del lenguaje de la política(fecha)
-	- Efecto: La instrucción permite o deniega el acceso.
-	- Acción
-	- ?
-
-### Cómputo como servicio
-- Especificaciones de hardware
-- Configuraciones lógicas: Ubicación de redes, reglas de firewall, autenticación y el sistema operativo a elegir
-- Pasos a seguir:
-	- Lanzar una instancia (VM)
-		- Instancia AWS
-		- Volumen: "Disco duro"
-	- Crear imagen
-	- Lanzar una instancia
-
-#### Ciclo de vida
-![[Pasted image 20250407181733.png]]
-
+**Ventajas**
+- Servicios ubicuos (en cualquier parte del mundo)
+- Reducción de costos*
+	- ¿Realmente es un costo reducido?
+- Disponibilidad, escalabilidad, elasticidad
+- Flexibilidad, Movilidad.
+**Desventajas**
+- Dependencia de ente externo
+	- Seguridad
+	- Confidencialidad
+	- Conectividad

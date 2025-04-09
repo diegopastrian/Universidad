@@ -112,4 +112,37 @@ ServesLess: Sin servidor. No es necesario adecuar el SO si solo se ocupa una BDD
 ##   Clase 27 de Marzo
 ### CMMI
 5 Niveles de madurez. 
-- 
+
+## 7 de Abril
+
+### Modelo de responsabilidad compartida
+
+#### IAM
+- Global, no específica de alguna región. 
+- Administra usuarios que acceden a consola.
+	- Para muchos servicios AWS se utiliza de forma predeterminada.
+- Admite MFA (Multifactor Autenticator)
+- Identidad Federada: Empleados de la empresa no necesitan tener usuario/contraseña aparte para acceder a la nube. 
+
+- Usuario IAM
+- Credenciales de usuario IAM
+- Grupos de IAM
+- Políticas de IAM
+	- Versión: Versión del lenguaje de la política(fecha)
+	- Efecto: La instrucción permite o deniega el acceso.
+	- Acción
+	- ?
+
+### Cómputo como servicio
+- Especificaciones de hardware
+- Configuraciones lógicas: Ubicación de redes, reglas de firewall, autenticación y el sistema operativo a elegir
+- Pasos a seguir:
+	- Lanzar una instancia (VM)
+		- Instancia AWS
+		- Volumen: "Disco duro"
+	- Crear imagen
+	- Lanzar una instancia
+
+#### Ciclo de vida
+![[Pasted image 20250407181733.png]]
+
