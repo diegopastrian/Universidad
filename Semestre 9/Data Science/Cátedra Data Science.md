@@ -276,5 +276,59 @@ En un modelo supervisado, $Y = F(x) + E$, si hay información que se pasa de las
 - Basado en árboles de decisión, cada árbol aprende de los errores del anterior.
 	- Se denominan modelos ensamblados.
 ##### Regresión
+## 14 de Abril
+##### Forecasting
+ **Series de tiempo**
+- Analizar y predecir *Datos Secuenciales*.
+- Sus usos:
+	- ¿Cómo los meteorólogos predicen el clima?
+	- Economía
+- Se diferencia de la regresión en que un Y depende de otros Y.
+	- Necesito saber del pasado para predecir el futuro.
+	- Dada F(x) ->  X: Datos Y del pasado
+	- $Y = F(Y_{t-1})$
+- **Estacionariedad**
+	- Media y varianza se mantiene constante
+	- No hay tendencia ni estacionalidad.
+	- Autocorrelación constante.
+		- Oscilaciones random. 
+		- Puntos que se mueven mucho de la tendencia
+![[Pasted image 20250414132621.png]]
+- Test:
+	- Dickey-Fuller:
+		- Hipotesis nula: Existe una raíz unitaria en serie temporal y no es estacionaria
+		- Hipotesis 1: No existe raiz unitaria en serie temporal y esta es estacionaria
+	- KPSS:
+		- Hipotesis nula: datos estacionarios
+		- Hipotesis 1: Datos no son estacionarios
+
+**Componentes**
+
+Estas series corresponden a la suma de:
+- **Tendencia:** Regresión lineal sobre el resultado. Positiva o negativa a lo largo del tiempo.
+- **Estacionalidad:** Patrones que se repiten en intervalos fijos dentro de una serie de datos.
+- **Ruido:** Información impredecible de los datos que se escapa de conceptos como la tendencia y estacionalidad.
+
+![[Pasted image 20250414133633.png]]
+
+| Modelo                                   | Características Principales                                     | Limitaciones                                                 |
+|------------------------------------------|-----------------------------------------------------------------|-------------------------------------------------------------|
+| Moving Average (MA)                      | Captura fluctuaciones a corto plazo y suaviza datos             | No modela tendencias ni estacionalidad                     |
+| Autoregressive (AR)                      | Usa valores pasados para predecir el futuro                     | No modela ruido aleatorio de manera eficiente            |
+| Autoregressive Moving Average (ARMA)     | Captura patrones a corto y largo plazo en series estacionarias | No maneja datos no estacionarios                          |
+| Autoregressive Integrated Moving Average (ARIMA) | Maneja datos no estacionarios con diferenciación           | No modela estacionalidad explícitamente                   |
+| Seasonal ARIMA (SARIMA)                  | Extiende ARIMA para incluir patrones estacionales              | Puede ser complejo de ajustar por la cantidad de parámetros |
+| Exponential Smoothing (SES, Holt-Winters) | Suaviza datos y captura tendencias y estacionalidad de manera flexible | No maneja relaciones entre múltiples variables           |
+| Vector Autoregression (VAR)              | Captura relaciones entre múltiples series de tiempo            | Necesita muchas observaciones para ajustar bien el modelo |
+| Machine Learning (RNN, LSTM)             | Capta patrones no lineales y dependencias a largo plazo       | Requiere grandes volúmenes de datos y potencia computacional |
+
+- MA: Depende de los Y anteriores
+- AR: Depende de los E pasados (errores)
+- ARMA: Combinación de ambos.
+- ARIMA: 
+	- AR+**I**+MA:
+		- I: Proceso de diferenciación. Sirve para hacer la serie de tiempo estacionaria.
+			- Elimina la tendencia
+			- AR y MA asumen serie de tiempo estacionaria.
 
 #### Modelos no supervisados

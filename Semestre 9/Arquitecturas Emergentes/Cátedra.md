@@ -145,4 +145,104 @@ ServesLess: Sin servidor. No es necesario adecuar el SO si solo se ocupa una BDD
 
 #### Ciclo de vida
 ![[Pasted image 20250407181733.png]]
+## 14 de Abril
+### VPC
+**Vpc**: servicio relacionado a lo teleco en la nube
 
+![[Pasted image 20250414174125.png]]
+
+- **Nube de AWS**
+	- Cuenta específica, diagramado con su ID, descripción para saber donde se hace el despliegue.
+	- Conv
+	- Es el equivalente en google cloud al proyecto
+	- **VPC**: Red lógica donde se realiza:
+		- El direccionamiento
+		- Definiciones de subnet
+			- Redes públicas y privadas
+			- Dentro de subnet: *Instancias de cómputo*
+				- Por detrás de cada instancia de cómputo hay una subnet
+				- No se puede crear sin una configuración de red.
+				- Se necesita una IP privada. Opcionalmente IP pública.
+			- Primera ip: .1 para gateway, puerta de enlace al internet.
+		- Rangos de ip asignables
+
+![[Pasted image 20250414174730.png]]
+
+- Private internet gateway
+
+#### AWS Direct Connect
+![[Pasted image 20250414175119.png]]
+
+- Subnet pública:
+	- Recursos a los que todas las personas acceden, por ejemplo el sitio web de la tienda.
+		- Capa de frontend
+- Subnet privada:
+	- Imposible de acceder desde afuera.
+	- No llegan ataques acá
+- VPC: subredes pueden comunicarse entre sí. Podría incluir instancias de amazon EC2 que usen bdd que están en subred privada.
+### Componentes importantes
+#### ACL: Access Control List
+
+Servicio AWS que es un firewall virtual que trabaja en las capas del modelo OSI para controlar tráfico entrante y saliente. Referencia hacia la subnet
+- Una cuenta AWS por defecto viene con ACL.
+- Reglas específicas
+	- Aceptar rango de IP
+	- Aplicar una Whitelist
+		- Políticas de bloquear todo excepto esta lista.
+	- Aplicar una Blacklist
+		- Políticas de aceptar todo excepto esta lista.
+
+#### Security Group
+
+Componente de tipo Firewall. Referencia hacia la instancia de cómputo.
+- Firewall de todas las capas del modelo OSI.
+- Deniega tráfico entrante y permite todo el tráfico saliente.
+- Se pueden agregar reglas personalizadas.
+- Hacia una o más instancias de cómputo.
+Tanto ACL como SG son firewalls.
+
+#### Filtrado de paquetes
+
+Las ACL realizan un filtrado de paquetes sin estado.
+- No recuerdan nada, comprueban paquetes que cruzan el borde de la subred en cada sentido: entrada y salida.
+- Los grupos con seguridad realizan filtrado de paquetes **con estado**.
+	- De acuerdo a la metadata del paquete, hace un recordatorio de la decisión y deja pasar al paquete.
+	- Permiten la salida por defecto.
+
+![[Pasted image 20250414180057.png]]
+
+#### DNS
+- Entrega el dominio de un sitio en base a su IP.
+- Para el url corresponde a la ip externa del gateway 
+- Ruta 53: permite administrar hacia dentro de mi account todos los dominios que yo necesite para saber exactamente a qué ip o subnet enviar una consulta a resolver mi plataforma.
+![[Pasted image 20250414180823.png]]
+- App Load Balancer:
+	- Distribuir la carga.
+	- Revisa cuanta carga esta llegando.
+-  Cloudfront: dependiendo de dónde hago la consulta geográficamente, hace el envío a una distinta ip.
+- Autoscaling:
+	- Énfasis en su símbolo con las flechas hacia adentro
+	- Escalamiento horizontal.
+	- Necesita cantidad mínima de instancias (en la imagen son 3)
+		- Se tienen clones con distintas ip de instancias. Esto pasa ante muchos clientes usando la pagina.
+		- Tengo un trigger de la concurrencia 
+		- h_max: maxima cantidad de clones. 
+	- Para calcular la cantidad de ips en la subnet se necesita considerar las máquinas clones. Cada instancia tiene ip diferente, pero 
+
+#### Tarea
+
+▪ ¿Cuáles son los nombres y principales características de las capas del Modelo OSI?
+▪ ¿Qué es una MAC Address, cuál es su propósito, cómo se presenta y cuántos bits la conforman?
+▪ ¿Qué es una IP Address, cuál es su propósito y cuántos bits conforman la versión 4 y versión 6?
+▪ ¿Cuáles son los rangos públicos y privados de IP Address Clase A, Clase B y Clase C?
+▪ ¿En qué consiste un proceso de direccionamiento?
+▪ ¿Cuál es el propósito de los conceptos: Subnetting, CIDR & VLSM?
+▪ ¿En qué consiste un proceso de enrutamiento?
+▪ ¿Cuáles son los criterios para el funcionamiento de los protocolos: RIP, OSPF & EIGRP?
+▪ ¿Cuál es el propósito de: DHCP, DNS, FTP, NTP, HTTP, SMTP, POP3, IMAP, VLAN, VPN?
+
+Diapositivas en canva hasta antes de clase 5, documentación en los laboratorios del taller numero 1, normativas y estandares 
+
+- 1. Caso de estudio: qué parametros considerar, que kpi
+- 2. describir UML: para este caso describir una vista usando uml. Ser capaz de diagramarlo.
+- 3. Preguntas de alternativa. Marco teórico.

@@ -30,8 +30,7 @@
 
 7) *"En la arquitectura cliente/servidor, tanto el procesamiento, como los datos, están distribuidos en varios componentes. Esto posibilita que el sistema sea escalable, ya que no hay dependencia entre ellos. Sin embargo, surge la necesidad de sincronización de los datos que son administrados en cada servidor, pues un cambio en los datos debe ser replicado a los otros servidores con el fin de mantener la consistencia de los datos."*
 	- Este párrafo es ***correcto***!
-
 8) *"La arquitectura de capas posibilita desarrollar el sistema de forma incremental. Para poder utilizar esta característica es haber definido las interfaces de todas las capas del sistema, de manera que cada componente sepa cómo invocar al componente de la capa que requiera, independientemente de si ese componente ya haya sido desarrollado o no."*
 	- Todo es correcto salvo que se necesita definir **todas** las capas del sistema. Solamente es necesario definir las capas vecinas 
 	- La capa que requiera: Siempre que sea la vecina.
-
+	

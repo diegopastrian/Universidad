@@ -6,11 +6,20 @@ El diseño general del sistema genera problemas estructurales.
 - Definir la estructura (componentes).
 	- Componente: Código que implementa un requerimiento funcional.
 - Especifica la comunicación entre componentes.
-- Plantea requerimientos funcionales.
-- Plantea requerimientos no funcionales.
+- Plantea **requerimientos funcionales**.
+- Plantea **requerimientos no funcionales**.
 	- Restricciones técnicas.
 	- Restricciones de negocio.
-	- Atributos de calidad.
+	- *Atributos de calidad*.
+		- Performance
+		- Escalabilidad
+		- Mantenibilidad
+		- Confiabilidad
+		- Seguridad
+		- Interoperabilidad
+		- Portabilidad
+		- Soportabilidad
+		- Verificabilidad
 - Abstracción del sistema.
 - Tiene distintas vistas:
 	- Lógica
@@ -52,6 +61,7 @@ El diseño general del sistema genera problemas estructurales.
 		- Autorización
 			- ¿Qué puede hacer el usuario?
 		- Perfilamiento
+			- Crear el perfil detallado del usuario(permisos)
 	- A nivel *DATOS*
 		- Encriptación
 		- Integridad
@@ -109,31 +119,32 @@ Si falla el bus, existe un problema.
 	- Bitácora de procesos
 	- Gestión de logs
 	- Documentación actualizada
+- **Verificabilidad**
+	- Capacidad del sistema de comprobar su propio funcionamiento.
 
 ### Arquitecturas de Software Genéricas
 - Deben satisfacer los RF
 #### Diseño de Software
-- **Fase 0**: Analizar contexto.
+- **Fase 0** **: Analizar contexto.**
 	- Requerimientos funcionales y no funcionales
 	- Ambiente Operacional
 	- Restricciones
-- **Fase 1**: Estructuración
+- **Fase 1** **: Estructuración**
 	- Identificar componentes y relaciones.
 	- Descompone el sistema en un conjunto de componentes.
 	- Utiliza un **diagrama de bloques** que muestra la estructura del sistema.
 	- Indica flujo de datos entre componentes.
-	- Muestra interfaces proveidas por sistema.
+	- Muestra interfaces proveídas por sistema.
 	- **Interfaz**: conjunto de métodos y funciones que definen cómo interactúan los diferentes componentes o sistemas entre sí
-- **Fase 2**: Modelo de control
-	- Comportamiento componentes
-- **Fase 3**: Descomposición modular
-	- Diseño detallado
+- **Fase 2** **: Modelo de control**
+	- Comportamiento de los componentes
+	- Cómo interactúan los componentes 
+	- Establece como actúan frente a operaciones de entrada
+- **Fase 3** **: Descomposición modular**
+	- Diseño detallado más específico
 
 #### Modelos de estructuración
 - **Cliente servidor**
-	- Cliente != Usuario.
-	- *Cliente* es un proceso que pide algo. El usuario utiliza este proceso para solicitar servicio al servidor. 
-	- Un *servidor* es un proceso que responde algo. Ofrecen servicios específicos. Satisfacen RF.
 - **Arquitectura Orientada a Servicios (SOA)**
 - **Modelo de Capas**
 - **Modelo Repositorio**
@@ -154,7 +165,22 @@ Si falla el bus, existe un problema.
   - `Depósitos`
 
 ⚠️ **Punto único de falla**: Todos los servicios dependen del mismo servicio, lo que puede generar vulnerabilidades en el sistema.
-
+### Modelo Cliente / Servidor
+	Cliente != Usuario.
+- **Cliente** es un proceso que pide algo. El usuario utiliza este proceso para solicitar servicio al servidor. 
+- Un **servidor** es un proceso que responde algo. Ofrecen servicios específicos. Satisfacen RF.
+- **Ventajas**
+	- Proceso Distribuido
+		- No necesariamente cliente y servidor estarán en la misma máquina.
+	- Datos distribuidos
+	- Escalable
+- **Desventajas**
+	- Datos no compartidos
+	- Administración de datos en cada Servidor
+	- Performance deteriorizada
+		- Puede depender de la red y la distancia física.
+	- No hay registro centralizado de servicios
+		- Servicios distribuidos, no hay pnto único de control.
 ### SOA
 
 #### Bus de servicios
@@ -209,12 +235,13 @@ Loto: Se escogen 6 números del 1 al 51. Se apuesta a que ellos sean los ganador
 	- La diferencia con un servicio es que se identificó frente al bus.
 - El cliente manda una transacción: *00016***servi**Hello World
 	- Si el bus detecta que el servicio no existe, cancela la transacción. (ServiNKHelloWorld)
-	- En caso contrario, serviOKReceived
+	- En caso contrario, serviOKReceived.
 
 ### Modelo de Capas
 Conjunto de capas de Software que ofrecen servicios específicos.
 
-- Cada capa tiene interfaz claramente definida y aporta en lo que le corresponde al procesamiento de la transacción.
+- Cada capa tiene **interfaz claramente definida** y aporta en lo que le corresponde al procesamiento de la transacción.
+	- **interfaz**: Conjunto de métodos y funcionalidades que definen cómo interactuan distintos componentes.
 - Comunicación entre componentes de capas vecinas.
 - Desarrollo independiente de las capas.
 
@@ -249,7 +276,7 @@ Sistema de banco:
 Útil si hay gran cantidad de datos a ser compartidos por varias apps.
 - Gestión centralizada de datos
 - Almacenamiento centralizado
-Modelo Pasivo y proactivo.
+El Modelo puede ser Pasivo y/o proactivo.
 - **Pasivo**:
 	- Los componentes no interactuan de manera activa entre sí. Aplicaciones consultar el repo. al necesitar acceso a los datos.
 	- Los datos no son modificados automáticamente por el sistema. Requieren acción de consulta o actualización desde cliente o componente para ser utilizados.
@@ -312,3 +339,4 @@ Objetos distribuidos a través de distintos nodos o máquinas de una red. Intera
 	- Seguridad
 	- Confidencialidad
 	- Conectividad
+

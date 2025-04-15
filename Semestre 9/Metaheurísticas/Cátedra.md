@@ -242,7 +242,6 @@ Se basa en *Greedy*.
 	- Criterio para seleccionar variable a modificar
 	- Criterio para elegir valor para tal variable a modificar
 - Con operadores de movimiento, se mejora tal solución.
-
 #### Hill Climbing Mejor-Mejora
 - Inicializar una solución a partir de criterio heurístico o aleatorio.
 - Mientras no se cumpla el criterio de parada (No hay mejora, tiempo, iteraciones...)
@@ -291,8 +290,7 @@ Exploración y explotación en TS
 - exploracion/diversificación: A través de la lista tabú
 - Balance estático: a través del tamaño de la lista tabú.  
 	- Lista tabú larga: gran diversificación y poca intensificación.  
-	- Lista tabú corta: gran intensificación y poca diversificación.
-- 
+	- Lista tabú corta: gran intensificación y poca diversificación. 
 primer movimiento importante.
 lista tabu permite no mover hacia el mismo lugar
 ![[Pasted image 20250331120821.png]]
@@ -328,7 +326,7 @@ $$P(temperatura,sol_{nueva},sol_{actual}) = e^{\triangle_{obj}/ T}$$  $$\triangl
 	- $P(\triangle_{obj},T)>R$
 	- R: Número aleatorio entre [0,1].
 - **Estado de equilibrio**
-		- Antes de bajar la temperatura, se requieren ciertas iteraciones para explorar soluciones sobre la temperatura actual  hasta alcanzar un *estado de equilibrio*. 
+	- Antes de bajar la temperatura, se requieren ciertas iteraciones para explorar soluciones sobre la temperatura actual  hasta alcanzar un *estado de equilibrio*. 
 	- Un número suficiente de movimientos debe ser aplicados. ¿Pero cuantas iteraciones sobre una misma T?
 		- **Estático:**
 			- Número fijo de iteraciones sobre cada T
