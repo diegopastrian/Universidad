@@ -332,3 +332,58 @@ Estas series corresponden a la suma de:
 			- AR y MA asumen serie de tiempo estacionaria.
 
 #### Modelos no supervisados
+
+
+## Clase 12 de Mayo
+
+Silueta: A más cercano a 1, mejor. 
+- Calinsky Harabaz: Métrica que más grande mejor.
+
+### Machine Learning no supervisado: Dimensionality Reduction
+- Afecta en la multicolinealidad
+- **PCA**
+	- Técnica de reducción dimensional que transforma un conjunto de variables correlacionadas en otro conjunto de variables no correlacionadas.
+	- Es el más utilizado.
+	- Lineal
+	- Busca un eje
+- LDA
+	- Lineal
+	- Encontrar ejes para encontrar la máxima separación  entre ambos
+- T-SNE
+	- Distributed sothcastic neighbor embedding
+	- No lineal
+- **CNN**
+	- No lineal
+	- Encoder
+		- Convolucional2D( algo ,Relu)
+		- Pooling(...)
+		- Convoluc(...)
+		- Pooling( ... )
+		- Flatter( ) -> Entrega algo compacto
+	- Decoder
+
+## Clase 15 de Mayo
+- Materia faltante
+### Overfitting / Underfiting
+- Problema de la forma en que ataco el problema: data train != data test
+- **Cross Validation**
+	- Iterar sobre el mismo dataset, agarrando distintos pedazos de tal dataset para el testeo en cada iteración.
+	- De esto se obtiene un Average Perfomance (Es lo que se puede confiar).
+	- cross_vall_score, cross_val_score(model,X,Y,CV=5).
+	- **Alto Sesgo**: Underfitting
+	- **Alta varianza:** Overfitting
+- **Validation Curve**
+	- Model score: Depende de qué estoy midiendo, para clasificación accuracy etc
+	- a Más epocas más complejidad
+	- Validation score -> modelo mas malo pero mas underfiting
+	- training score -> modelo más bueno pero mas overfiting
+	- Eje 
+- **Regresión polimonial**
+	- Validation Curve
+	- Usa un poliniomio x elevado a algo
+	- Con el grado de la polinomial mejor se ajusta.
+	- mas a la derecha APLICATION VALIDATION CURVE Mas overfitting a la izquierda underfiting
+	- Esa validation curve me permitió saber que grado x:degree del polinomio
+- Learning Curve
+	- pendiente 
+- Validation curve vs learning curve

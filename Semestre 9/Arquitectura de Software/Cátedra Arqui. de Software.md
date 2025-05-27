@@ -2,6 +2,7 @@
 
 **¿Qué es la arquitectura de Software?**
 Definir componentes organizados que permitan satisfacer requerimientos funcionales del cliente. Relaciones de comunicación entre componentes. -IEEE
+	
 El diseño general del sistema genera problemas estructurales. 
 - Definir la estructura (componentes).
 	- Componente: Código que implementa un requerimiento funcional.
@@ -340,3 +341,141 @@ Objetos distribuidos a través de distintos nodos o máquinas de una red. Intera
 	- Confidencialidad
 	- Conectividad
 
+## 4 de Mayo
+### Modelos de Control 
+#### Control Centralizado
+Un componente controla la ejecución del sistema. **Modelo Call-Return**
+Única entidad o punto de control (el "centro") que toma todas las decisiones importantes y coordina las actividades de todas las demás partes del sistema. Piensa en ello como el cerebro de una operación.
+- Es simple, predecible, rígido, testeable, bloqueante, complejo manejo.
+	- Simple: Se tiene una lista de tareas a ejecutar
+	- Rígido: No se puede cambiar, ya se especificó de tal manera.
+	- Predecible: Se sabe cómo se va a ejecutar el proceso.
+	- Bloqueante: Parte del sistema debe esperar a que la operación termine para continuar con las otras.
+- Ya no se usa, No sirve para sistemas interactivos.
+- **Modo administrador**
+	Si la malla es compleja podría haber un problema. Se usa en programas no interactivos (Procesos de cuadratura, cálculo, procesos con cierta lógica).
+	- No bloqueante
+	- Coordinación de diferentes procesos
+	- Lógica centralizada
+	- Posible cuello de botella
+
+#### Control basado en eventos
+- Control descentralizado
+- Control No bloqueante 
+- *No es rígido*: Son cosas  que ocurren en instantes distintos
+- Manejan eventos generados externamente
+	- **Transmisión múltiple**.
+		- Usan modelo Publicador-Suscriptor
+			- Suscriptores procesan los eventos emitidos
+		- Componentes distribuidos
+			- Publican servicios
+			- Gatillan eventos
+			- Suscriben eventos
+		- *Ventajas*
+			- Activación descentralizada de componentes
+			- Distribución de componentes
+			- Evolución simple
+				- Nuevos  suscriptores o publicadores se pueden agregar sin afectar al resto
+		- *Desventajas*
+			- Respuesta incierta
+				- ¿Qué componente responderá? ¿Cuándo?
+			- Varios manejadores del mismo evento
+				- Si varios componentes quieren modificar el mismo recurso basado en el evento, qué ocurre entonces?
+	- **Manejador de interrupciones**.
+		- Interrupción: Evento urgente que requiere atención inmediata
+		- La diferencia es que es de alta prioridad.
+		- Manejador para cada tipo de interrupción
+		- Sistemas en tiempo real (sistema de control de un avión).
+		- Manejador para cada tipo de interrupción 
+			- Tiene que haber alguien suscrito para responder a ese evento
+		- No bloqueante
+		- Procesamiento paralelo
+- Cada componente se administra, no hay nadie que controle si no que el control lo realizan todos. 
+### Descomposición modular
+Dividir componentes en módulos más pequeños y manejables.
+- Componentes divididos en módulos
+- Posibilita visualizar el modelo de control
+- Modelo de objetos
+- Modelo de flujo de datos
+#### Modelo de Objetos
+Conjunto de clases débilmente acopladas. Cambios en una clase -> Impacto mínimo en otras.
+- Interfaces bien definidas
+- Identifica atributos y métodos
+- Objetos creados a partir de las clases
+- Coordinación de operaciones entre objetos
+#### Modelo de flujo de datos
+Sistema descompuesto en **procesos funcionales**. Cada proceso es responsable de transformar datos de entrada en datos de salida.
+- Descomposición en procesos funcionales
+- Transformación de entradas en salidas
+- Dependencia entre procesos
+	- La salida de uno puede ser la entrada de otro.
+- Flujo predeterminado
+- Adecuado para procesos batch
+	- Se procesan gran cantidad de datos sin interaccion de user.
+### Arquitecturas de Dominio Específico. 
+- Modelos específicos para un dominio.
+- **Arquitecturas genéricas**
+	- Generalización de sistemas reales
+	- Se realizan mediante el análisis de sistemas existentes
+	- Son como una plantilla
+- **Arquitecturas de referencia**
+	- Idealización de una arquitectura específica
+	- Estudios del dominio de una aplicación
+	- Estándar de facto en su dominio
+		- se considera buena práctica aunque no sea oficial
+
+## Clase ??? de Mayo: Patrones de Arquitectura
+### Patrones de Arquitectura
+Es una solución de diseño a una necesidad. Se caracteriza por:
+- Ser un esquema genérico
+- Probado
+- Recurrente
+Y este especifica:
+- Componentes
+- Responsabilidades
+- Relaciones
+**Ventajas**
+- Organización de los componentes
+- Separación de las responsabilidades
+- Facilitación del trabajo en equipo
+- Reducción de erorres
+- Reutilización de componentes
+- Uso de estándares
+**Desventajas**
+- Curva de aprendizaje
+- Complejidad técnica
+- Rendimiento limitado
+- Uso de herramientas externas
+#### Descripción de un patrón
+- Nombre
+- **Contexto**
+	- Situación específica o escenario que da origen a la necesidad del patrón. Describe el ámbito de la necesidad y situaciones que la originan de forma detallada y general. Puede ser dificil de precisar.
+- **Requerimiento**
+	- Fuerzas presentes en el contexto. Necesidad que el patrón busca resolver. Define lo que se debe solucionar, considerando fuerzas presentes en contexto como propiedades requisitos y restricciones.
+- **Solución**
+	- El esquema propuesto para abordar el requerimiento. Busca balance entre las fuerzas identificadas.
+		- Estructura: Componentes y sus relaciones
+		- Comportamiento: Cómo se organizan e interactúan los componentes para cumplir con la solución.
+#### Clasificación de los patrones
+##### Patrones Simples
+Algunos ejemplos de patrones simples:
+- **Capas**: Estructura aplicaciones descomponiendolas en tareas con distintos niveles de acción.
+	- Contexto: Sistemas jerárquicos estructurados con diversos niveles de acción
+	- Problema: Organización inadecuada genera problemas de escalabilidad y mantenibilidad
+	- Solución: Estructuración en esquema multi-capa. Capa base con nivel de abstracción más bajo. Avanzar capa a capa usando servicios de la capa inmediatamente anterior. Componentes estructurados en módulos relacionados.
+	- La capa K se relaciona con la K-1, no hay otras dependencias.
+	- Cada capa se integra por distintos componentes, los que pueden interactuar entre si pero quedan acoplados.
+	- Cada capa expone interfaz con sus servicios a proveer. El comportamiento puede ser top-down o bottom-up.
+	Para este modelo, se debe implementar de la siguiente manera:
+	- Determinar el número de capas segun el nivel de abstracción
+	- Asignar responsabilidades a cada capa
+	- Especificar servicios ofrecidos 
+	- Definir estructura 
+	- Especificar su interfaz
+	- Especificar método de comunicación 
+- *Tubos y filtros*: 
+- Pizarrón
+- Repositorio
+- **Para Sistemas interactivos**
+- **Adaptables**
+- **Para Sistemas distribuidos**

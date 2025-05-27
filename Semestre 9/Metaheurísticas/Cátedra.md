@@ -297,7 +297,7 @@ lista tabu permite no mover hacia el mismo lugar
 ![[Pasted image 20250331121017.png]]
 en iteración 3-4 a pesar de estar en lista tabú por criterio de aspiración, como la FO queda mejor que nunca se hace igual el swap (5,4)
 
-## Clase 03 de Abril
+# Clase 03 de Abril
 
 ### Simulated Annealing
 
@@ -340,7 +340,7 @@ $$P(temperatura,sol_{nueva},sol_{actual}) = e^{\triangle_{obj}/ T}$$  $$\triangl
 			- Si la diferencia entre $f_h$​ y $f_l$​ es grande, F−F_{-}F−​ será mayor y se explorarán más iteraciones, ya que hay mayor variabilidad en la calidad de las soluciones.
 			    - Si la diferencia es pequeña, el sistema está relativamente "estable", y se requieren menos iteraciones antes de bajar la temperatura.
 
-## 7 de Abril
+# 7 de Abril
 **Algoritmos de Trayectoria**
 ### ILS
 - Solución inicial + Local search
@@ -364,3 +364,41 @@ Toda propuesta debe ser validada de manera cuantitativa, resolución de N instan
 - Cuántas veces se debe ejecutar cada benchmark?
 	- Depende, determinista : 1 vez. Estocastico: ?
 	- Tests estadísticos -> t-test, wilcoxon, etc.
+
+# Clase 22 de Mayo
+- ACO: 
+- PSO: Partículas, G_best , L_best
+## Sintonización VS Control
+- **Sintonización**: Proceso previo a la ejecución del algoritmo.
+- **Control**: Proceso conjunto a la ejecución del algoritmo.
+	- Tiempo de diseño
+	- Tiempo adicional durante la ejecución
+	- Valores variables durante la ejecución del algoritmo
+### Sintonización
+Existen técnicas estadísticas (Racing) o una Metaheurística (ParamILS, Meta-Genético) para sintonizar las variables. La sintonización:
+- Consume mucho tiempo
+- Parámetros útiles para el problema en particular
+- Valores fijos durante la ejecución
+ ->  Necesito un configurador **automático** que recibe como feedback los costos resultantes para algunos valores de parámetro.
+ 
+ **Racing:** De población                
+- *Testeo estadístico* que evalúa iterativamente cada algoritmo.
+	- Testeos con malos resultados son eliminados de la carrera por el algoritmo.
+- La performance de un algoritmo se define como la habilidad de hacer evolucionar a una población, medido a través del fitness del campeón
+- El que tenga mejor fitness: Aquel que termina, o aquel con mejor FO.
+
+**Búsqueda local**
+	amo a mi pololo 
+Uno podría:
+- Comenzar con parámetros random
+- Experimentar cambiando el valor de un parámetro, aceptando si mejora el resultado
+- Repetir lo anterior hasta que no haya algo mejor 
+Utiliza **ILS**: Solución S -> random walk -> búsqueda local.
+
+### Clasificación de técnicas de control
+- Control dinámico: Cambios se realizan de forma determinista con respecto a alguna forma de medicion de tiempo en el algoritmo. Cada n iteraciones disminuye el valor del parámetro x en 10%
+- Control adaptativo: Los cambios se realizan en base a la información de la búsqueda. La  
+idea es monitorear ciertos elementos del algoritmo de forma de terminar cambios en los  
+valores de los parámetros en base a cambios en dichos elementos. Los valores de los  
+parámetros son globales para el algoritmo.
+- Control auto-adaptativo: Lo mismo que lo anterior, pero cada individuo de la población tiene sus propios parámetros.
