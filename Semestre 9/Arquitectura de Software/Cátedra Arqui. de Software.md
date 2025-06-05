@@ -426,14 +426,20 @@ Sistema descompuesto en **procesos funcionales**. Cada proceso es responsable de
 
 ## Clase ??? de Mayo: Patrones de Arquitectura
 ### Patrones de Arquitectura
-Es una solución de diseño a una necesidad. Se caracteriza por:
+**Es una solución de diseño a una necesidad. Se caracteriza por:**
 - Ser un esquema genérico
+	- Es una base moldeable y adaptable al problema a solucionar
 - Probado
+	- No es algo nuevo, es algo hecho, probado y documentado
 - Recurrente
-Y este especifica:
-- Componentes
-- Responsabilidades
-- Relaciones
+	- Es común utilizar el patrón para resolver el problema.
+Y este especifica y está hecho de:
+- **Componentes**
+	- Piezas o bloques de construcción
+- **Responsabilidades**
+	- Qué hace cada pieza?
+- **Relaciones**
+	- Como se relacionan las piezas?
 **Ventajas**
 - Organización de los componentes
 - Separación de las responsabilidades
@@ -447,7 +453,7 @@ Y este especifica:
 - Rendimiento limitado
 - Uso de herramientas externas
 #### Descripción de un patrón
-- Nombre
+- **Nombre**
 - **Contexto**
 	- Situación específica o escenario que da origen a la necesidad del patrón. Describe el ámbito de la necesidad y situaciones que la originan de forma detallada y general. Puede ser dificil de precisar.
 - **Requerimiento**
@@ -459,10 +465,12 @@ Y este especifica:
 #### Clasificación de los patrones
 ##### Patrones Simples
 Algunos ejemplos de patrones simples:
-- **Capas**: Estructura aplicaciones descomponiendolas en tareas con distintos niveles de acción.
-	- Contexto: Sistemas jerárquicos estructurados con diversos niveles de acción
-	- Problema: Organización inadecuada genera problemas de escalabilidad y mantenibilidad
-	- Solución: Estructuración en esquema multi-capa. Capa base con nivel de abstracción más bajo. Avanzar capa a capa usando servicios de la capa inmediatamente anterior. Componentes estructurados en módulos relacionados.
+###### Capas: 
+	 Estructura aplicaciones descomponiendolas en tareas con distintos niveles de acción.
+- **Contexto**: Sistemas jerárquicos estructurados con diversos niveles de acción
+- **Problema**: Organización inadecuada genera problemas de escalabilidad y mantenibilidad
+- **Solución**: 
+	Estructuración en esquema multi-capa. Capa base con nivel de abstracción más bajo. Avanzar capa a capa usando servicios de la capa inmediatamente anterior. Componentes estructurados en módulos relacionados.
 	- La capa K se relaciona con la K-1, no hay otras dependencias.
 	- Cada capa se integra por distintos componentes, los que pueden interactuar entre si pero quedan acoplados.
 	- Cada capa expone interfaz con sus servicios a proveer. El comportamiento puede ser top-down o bottom-up.
@@ -473,9 +481,14 @@ Algunos ejemplos de patrones simples:
 	- Definir estructura 
 	- Especificar su interfaz
 	- Especificar método de comunicación 
-- *Tubos y filtros*: 
-- Pizarrón
-- Repositorio
-- **Para Sistemas interactivos**
-- **Adaptables**
-- **Para Sistemas distribuidos**
+###### Tubos y filtros: 
+	-Estructura Aplicaciones en Actividades(filtros) para procesar flujos de datos, actividades unidas por tubos.
+- **Contexto**: Procesar flujos de datos.
+- 
+###### Pizarrón
+###### Repositorio
+##### Para Sistemas interactivos**
+
+##### Adaptables
+
+##### Para Sistemas distribuidos
