@@ -474,19 +474,100 @@ Algunos ejemplos de patrones simples:
 	- La capa K se relaciona con la K-1, no hay otras dependencias.
 	- Cada capa se integra por distintos componentes, los que pueden interactuar entre si pero quedan acoplados.
 	- Cada capa expone interfaz con sus servicios a proveer. El comportamiento puede ser top-down o bottom-up.
-	Para este modelo, se debe implementar de la siguiente manera:
-	- Determinar el número de capas segun el nivel de abstracción
-	- Asignar responsabilidades a cada capa
-	- Especificar servicios ofrecidos 
-	- Definir estructura 
-	- Especificar su interfaz
-	- Especificar método de comunicación 
+
+**Implementación**:
+- Determinar el número de capas segun el nivel de abstracción
+- Asignar responsabilidades a cada capa
+- Especificar servicios ofrecidos 
+- Definir estructura 
+- Especificar su interfaz
+- Especificar método de comunicación 
 ###### Tubos y filtros: 
 	-Estructura Aplicaciones en Actividades(filtros) para procesar flujos de datos, actividades unidas por tubos.
 - **Contexto**: Procesar flujos de datos.
-- 
+- **Requerimiento**: 
+	- Descomponer el procesamiento en una serie de actividades(filtros) conectados por tubos que transforman input en output(entregados en tubo), transformaciones independientes.
+- **Solución**:
+	- Tubos(pipes):
+		- Conecta origen de datos con un filtro.
+		- Conecta filtro con filtro.
+		- Conecta filtro con salida de datos.
+		- Esquema de procesamiento FIFO.
+	- Filtros:
+		- input ->transformación-> output
+		- flujo que solicita y entrega datos.
+		- filtros independientes
+			- Estado NO COMPARTIDO
+			- desconocen el resto de filtros
+			- activos o pasivos
+**Implementación**:
+- Dividir el sistema en secuencia de procesos ordenados e independientes
+- Definir el formato de los datos transmitidos por los tubos.
+	- Rendimiento o Flexibilidad?
+- Especificar el procesamiento de cada filtro
+- Construir los filtros
+- Definir esquema manejo de errores
+**Ventajas**:
+- Arquitectura flexible
+- No requiere de archivos intermedios
+- Filtros reutilizables
+- Procesamiento paralelo
+- Construcción independiente
+**Desventajas**:
+- Información no compartida
+- Conversión de datos
+	- ineficiencia
+- Errores pueden afectar el flujo de procesamiento
+Los comandos de Linux se implementan en un esquema de filtros. Pipe conecta la salida estándar de un proceso con la entrada del siguiente, es fácil estructurar una secuencia de comandos como si fueran uno solo.
 ###### Pizarrón
+Útil si no hay solución completa y múltiples sistemas aportan su conocimiento.
+- **Contexto**: Dominio en el que no hay una solución completa.
+- **Problema:** 
+	- Conocimiento parcial de la solución
+	- Cada solución requiere diferentes paradigmas
+	- El problema abarca muchas especialidades
+	- No es factible una solución completa
+	- Hay soluciones parciales que cubren parte del problema
+	- m´dulos aportan parcialmente a la solución
+	- Cada sistema contribuyente usa sus datos en diferentes representaciones
+- **Solución**:
+	- Conjunto de sistemas independientes que cada uno se especializa en una parte del problema y que trabajan colaborativamente. 
+	- Comparten datos a través del Pizarrón.
+	- Controlador centralizador coordina la ejecución de los sistemas.
+	- Genera soluciones parciales que pueden ser desechadas.
+	- Sistemas no se comunican directamente.
+	- Almacenamiento centralizado de la info.
+	- Diccionario de datos del contenido del pizarrón
+	- Sistemas especializados independientes leen y escriben en pizarrón
+	- Monitoreo centralizado del estado del problema
+	- Decisión centralizada de las acciones a seguir basado en el progreso
+	- Determinar si solución es aceptable o insoluble.
+**Ventajas**
+- Arquitectura flexible
+- Procesamiento paralelo
+- Construcción independiente
+- Integración de sistemas colaborativos
+**Desventajas**
+- Información no compartida directamente
+- Conversión de datos 
+	- Es ineficiente
+- Controlador complejo y posible cuello de botella
+- Sobrecarga
+Algunos ejemplos de este sistema son sistemas de IA, reconocimiento de texto/voz/imágenes, soporte a la toma de decisiones (diversos sistemas de análisis de datos), sistemas ETL. 
 ###### Repositorio
+Grandes cantidades de datos que deben de ser compartidos. Capa intermedia entre las apps y los datos.
+- Separa la lógica del negocio de las fuentes de datos -> independencia de datos.
+- Implementa operaciones CRUD basado en esquemas lógicos.
+- Interfaz común de acceso a los datos.
+**Ventajas**
+- Arquitectura flexible
+- Independencia de Datos
+- Desarrollo independiente
+- Reutilización, modularidad, paralelismo
+**Desventajas**
+- Sobrecarga en los procesos
+- Agrega capa adicional (disminuye eficiencia)
+- Riesgo de acoplamiento entre componentes 
 ##### Para Sistemas interactivos**
 
 ##### Adaptables
