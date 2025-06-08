@@ -568,8 +568,91 @@ Grandes cantidades de datos que deben de ser compartidos. Capa intermedia entre 
 - Sobrecarga en los procesos
 - Agrega capa adicional (disminuye eficiencia)
 - Riesgo de acoplamiento entre componentes 
-##### Para Sistemas interactivos**
+##### Para Sistemas interactivos
+###### Modelo Vista Controlador (MVC)
+El sistema se divide en tres partes:
+- **Modelo**: Datos y funcionalidad esencial 
+- **Vista**: Comunicación con el usuario
+- **Controlador**: Controla cambios al modelo
+Así, se tiene que:
+- **Interfaz de  usuario:** Controlador + Vista
+- **Lógica del negocio:** Controlador+ Modelo
+El controlador desacopla la vista del modelo -> Flexibilidad, mantenibilidad y adaptabilidad 
+- **Contexto**: Sistemas interactivos con interfaz flexible
+- **Problema**: 
+	- Interfaz con distinta representación
+		- Texto, iconos, gráficos, listas
+	- Paradigmas de ingresos diversos
+		- Digitación: cajas de texto
+		- Selección: checkbox, iconos
+		- Ingreso mixto
+	- Interfaz cambiante
+	- Funcionalidad nueva implica modificar la interfaz
+	- La información se presenta en múltiples formatos.
+- **Solución**: 
+	- **Comunicación (VISTA):**
+		- Envía requerimientos del usuario
+		- Recibe datos del modelo y los despliega al usuario
+	- **Administración (CONTROLADOR):**
+		- Define el comportamiento del sistema
+		- Recibe eventos y solicita servicios al modelo
+	- **Procesamienot (MODELO):**
+		- Provee funcionalidad provista por las vistas
+		- Encapsula el manejo de los datos.
 
+**Implementación**
+- Separar la funcionalidad de la interacción del usuario
+- Diseñar e implementar el modelo, las vistas, los controladores, relación vista/controladores.
+**Ventajas**
+- Modelo soporta múltiples vistas
+- Flexible, mantenible, adaptable
+- Frameworks implementan MVC
+**Desventajas**
+- Modelo acoplado con vistas y controladores
+- Vistas sin acceso a datos (ineficiencia)
+- Complejidad
+###### Presentación Abstracción Control (PAC)
+Estructura jerárquica de agentes cooperativos. Múltiples agentes que coordinan. Provee la funcionalidad de la aplicación, Agente es responsable de parte de la funcionalidad.
+Bajo acoplamiento entre agentes (independencia entre agentes).
+- **Presentación**: Interfaz
+- **Abstracción**: Funcionalidad
+- **Control**: Comunicación por agentes
+Segmentar el sistema en subsistemas especializados.
+- **Contexto**: Sistemas interactivos desarrollados utilizando agentes
+- **Problema:
+	- Estructurar un sistema interactivo mediante agentes funcionando en forma integrada
+	- Generar interfaces flexibles de usuario  
+	-  Separar la presentación de la funcionalidad  
+	- Bajo acoplamiento 
+	- Agentes con interfaces propias de comunicación  
+	- Agentes con estado y datos privados  
+	-  Trabajo cooperativo de los agentes
+- **Solución**
+	- Definir estructura jerárquica con 3 niveles de agentes
+		- Alto nivel
+		- Bajo nivel
+		- Intermedio: Relaciona agentes de bajo nivel
+	- Cada agente responsable de una parte de la funcionalidad y se componen de:
+		- Presentación: LLo visible
+		- Abstracción
+		- Control
+**Implementación:
+- Definir la funcionalidad central de un sistema
+- Estructurar la jerarquía de agentes
+- Definir e implementar cada agente
+		- Funcionalidad, interfaz, modelo de datos, mecanismo de control
+**Ventajas
+- Asigna responsabilidades específicas
+- Funcionamiento independiente
+- Soporta multitarea
+**Desventajas
+- Sistema Complejo
+- Baja eficiencia
+- Complejo mecanismo de control
+
+- **MVC:** Es centralizado. Ideal para una aplicación simple como la pastelería. Tienes **UN** Modelo, **UN** conjunto de Vistas y **UN** conjunto de Controladores. Es como un restaurante con un chef, camareros y una cocina.
+    
+- **PAC:** Es distribuido. Ideal para sistemas complejos que se pueden descomponer en partes que funcionan de forma semi-independiente pero que necesitan colaborar. Como nuestra conferencia o un sistema operativo con diferentes agentes para la red, el video, el sonido, etc.
 ##### Adaptables
 
 ##### Para Sistemas distribuidos
