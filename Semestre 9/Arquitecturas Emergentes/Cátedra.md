@@ -246,3 +246,32 @@ Diapositivas en canva hasta antes de clase 5, documentación en los laboratorios
 - 1. Caso de estudio: qué parametros considerar, que kpi
 - 2. describir UML: para este caso describir una vista usando uml. Ser capaz de diagramarlo.
 - 3. Preguntas de alternativa. Marco teórico.
+
+## 9 de Junio
+### Modelo C4 de Simon Brown (Structurice)
+Responde a 4 niveles de abstracción. "Overview, filter & zoom on demand".
+- **Contexto**:
+	- Niveles de dependencia.
+- **Contenedor**
+	- Permite tener una visión general enfocando en el stack tecnológico. 
+- **Componente**
+	- Poner foco en una lógica específica donde se busca describir la interacción entre los distintos componentes.
+- **Clases (o código)**
+	- Se puede ejemplificar un caso de uso, una funcionalidad o una feature específica.
+#### Diagramas
+- **System Context Diagram:**
+	- cardinalidad: 1
+	- Cualquiera puede entenderlo.
+	- De un nivel muy abstracto, se puede describir todo el sistema. 
+- **Container Diagram:**
+	- cardinalidad: 1
+	- Aparecen stacks tecnológicos
+	- Cómo se conectan los componentes en el contenedor.
+- **Componente**:
+	- Para cada contenedor describo los componentes haciendo foco en los más relevantes y su relación -> Cardinalidad N :cantidad de componentes dentro del contenedor
+	- Desaparecen otros elementos no necesarios para el motivo del diagrama.
+	- Los contenedores siguen siendo importantes acá.
+	- Aparecen los componentes utilizados.
+	- Para arquitectos y desarrolladores.
+- **Códigos**
+	- Nivel opcional

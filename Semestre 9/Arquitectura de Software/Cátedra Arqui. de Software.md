@@ -344,7 +344,8 @@ Objetos distribuidos a través de distintos nodos o máquinas de una red. Intera
 ## 4 de Mayo
 ### Modelos de Control 
 #### Control Centralizado
-Un componente controla la ejecución del sistema. **Modelo Call-Return**
+Un componente controla la ejecución del sistema. 
+- **Modelo Call-Return**
 Única entidad o punto de control (el "centro") que toma todas las decisiones importantes y coordina las actividades de todas las demás partes del sistema. Piensa en ello como el cerebro de una operación.
 - Es simple, predecible, rígido, testeable, bloqueante, complejo manejo.
 	- Simple: Se tiene una lista de tareas a ejecutar
@@ -382,7 +383,7 @@ Un componente controla la ejecución del sistema. **Modelo Call-Return**
 			- Varios manejadores del mismo evento
 				- Si varios componentes quieren modificar el mismo recurso basado en el evento, qué ocurre entonces?
 	- **Manejador de interrupciones**.
-		- Interrupción: Evento urgente que requiere atención inmediata
+		- **Interrupción**: Evento urgente que requiere atención inmediata
 		- La diferencia es que es de alta prioridad.
 		- Manejador para cada tipo de interrupción
 		- Sistemas en tiempo real (sistema de control de un avión).
@@ -481,7 +482,8 @@ Algunos ejemplos de patrones simples:
 - Especificar servicios ofrecidos 
 - Definir estructura 
 - Especificar su interfaz
-- Especificar método de comunicación 
+- Especificar método de comunicación
+Algunos componentes de una misma capa pueden quedar acoplados ()
 ###### Tubos y filtros: 
 	-Estructura Aplicaciones en Actividades(filtros) para procesar flujos de datos, actividades unidas por tubos.
 - **Contexto**: Procesar flujos de datos.
