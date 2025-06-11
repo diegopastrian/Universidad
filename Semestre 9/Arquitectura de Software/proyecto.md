@@ -10,4 +10,7 @@
 
 -- Ver estructura de una tabla específica y sus atributos
 \d nombre_tabla
+
+-- Ver tabla
+Select * from nombre*
 ```

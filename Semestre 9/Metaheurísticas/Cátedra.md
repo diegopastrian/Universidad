@@ -364,10 +364,92 @@ Toda propuesta debe ser validada de manera cuantitativa, resolución de N instan
 - Cuántas veces se debe ejecutar cada benchmark?
 	- Depende, determinista : 1 vez. Estocastico: ?
 	- Tests estadísticos -> t-test, wilcoxon, etc.
+---
+# Clase ? de Mayo
+## Algoritmos de población
+Técnica que se basa en ir mejorando una **población** de soluciones.
+- Se comienza con población inicial de soluciones
+- Iterativamente se genera un grupo de individuos y un reemplazo de la población actual
+	- Seleccionar los mejores individuos entre padres e hijos.
+Gran diversidad de soluciones iniciales -> Esta técnica tiende a explorar más
+Si no es diversa, puede generar convergencia prematura. 
+### Algoritmos evolutivos: 
+#### Genético
+- Individuos mejor adaptados tienen mayor probabilidad de sobrevivir.
+- **Fitness**: Determina qué tan apto es un individuo para competir con otros.
+	- incide en Probabilidad de selección para reproducirse
+	- **Ruleta**: Estrategia de selección, probabilidad proporcional al fitness.
+	- **Torneo**: K individuos aleatorios. Se elige aquel con mejor fitness, Si necesito elegir T individuos, T torneos.
+- **Reproducción**: Cruzamiento
+	- Usa operador binario
+	- Heredar caracteristicas de dos padres para los hijos
+	- Cruzamiento en 1 punto: 
+		- Mezclar sus dos mitades
+	- Cruzamiento en 2 puntos:
+		- Mezclar 3/3
+	- Cruzamiento uniforme:
+		- Cada bit se cambia o se mantiene azar 
+- **Mutación**
+	- Operador unario. Algunos genes pueden sufrir mutaciones.
+	- $p_m$: Probabilidad de cambio del gen.
+	- Se recomiendan valores bajos de $p_m$
+	- **Mutación dominio binario**
+		- Invertir uno o más bits
+	- **TSP y otros**
+		- Permutación entre variables (swap)
+- **Estrategias de reemplazo**
+	- Selección de sobrevivientes.
+	- Tamaño de población debe ser constante.
+	- Reemplazo generacional: Los hijos reemplazan a todos los padres
+	- Elitismo: Porcentaje de población se mantiene(los mejores).
+#### Differential Evolution(DE)
+- Para números continuos.
+- Población inicial $P_0$ tamaño $K$. Cada individuo es un vector real $x_{ij}$ de dimensión D.
+- Cada individuo es codificado como un vector de números de punto flotante. Cada elemento del vector se genera aleatoriamente en un rango para cada variable.
+- El cambio se basa en combinación lineal.
+	- A, B y C individuos de la población. 
+	- Al individuo C se le suma la diferencia vectorial A-B ponderada.
+	- El individuo general se enfrenta al C mutado
+- Problemas de funciones no diferenciables
+- Problemas multi-objetivo
+#### Coevolución Cooperativa
+- Coevolución: evolución complementaria de especies cercanas.
+- Dividir problema grande en subproblemas y resolverlos de manera independiente, al final los representantes de cada especie se unen y nace solución final. 
+- Útil en grandes problemas de optimización y redes neuronales.
+#### Scatter Search
+- Población inicial, se construye RefSet de tamaño moderado (10 soluciones aprox).
+- RefSet incluye soluciones con buen fitness y otras para mayor diversidad.
+- Se generan nuevas soluciones con RefSet. Lo hace combinando subconjuntos
+- Se actualiza el refset al evaluar nuevas soluciones. 
+# Clase x de Mayo
+## Inteligencia de Enjambre
+- Algoritmos que se inspiran en el comportamientos de especies.
+### PSO
+Inspirado en movimiento de las bandadas de aves.
+- Cada partícula i es una solución candidata al problema y se representa por vector $x_i$. Tiene su propia posición y velocidad.
+- Las mejores partículas influyen el comportamiento de sus compañeras.
+La partícula cambia $x_i$ por:
+- Mejor posición $p_i$ encontrada por ella 
+- Mejor posición encontrada por el enjambre $p_g$
+Cada partícula tiene un vecindario: global o local (gbest y lbest)
+- La velocidad cambia por: Su velocidad anterior, C1 (factor que acerca la particula hacia su pi) y C2(hacia gi), p1 y p2 aleatorias [0,1], pero W que modifica la velocidad anterior. 
 
+### Ant Colony Optimization (ACO)
+- **Hormigas**: 
+	- transporte de comida y ruta más corta hacia la fuente. Sirve para scheduling, routing, assignment, etc.
+	- Feromonas guían hacia objetivo, pero decrecen en el tiempo.
+	- Estigmergia: coop indirecta por feromonas.
+- **Modelamiento**:
+	- Depósito de feromona de una hormiga:
+		- Camino bueno, gran cantidad de feromona ($1/L_k$). 
+		- $L_k$ es el costo del camino encontrado por tal hormiga.
+			- Premia buenas decisiones, castiga las malas.
+	- Acumulación total de feromona:
+		- Sin evaporación solo es la suma total.
+		- Con evaporación sería  La suma total más (1-p)Tij que p representa qué tan rapido se evapora.
+		- decaimento asintotico, no llega a 0.
+	- Cada camino tiene probabilidad asociada a la cantidad de feromona, y lo atractivo del camino. Uno puede importar más que el otro.
 # Clase 22 de Mayo
-- ACO: 
-- PSO: Partículas, G_best , L_best
 ## Sintonización VS Control
 - **Sintonización**: Proceso previo a la ejecución del algoritmo.
 - **Control**: Proceso conjunto a la ejecución del algoritmo.
@@ -384,7 +466,7 @@ Existen técnicas estadísticas (Racing) o una Metaheurística (ParamILS, Meta-G
  **Racing:** De población                
 - *Testeo estadístico* que evalúa iterativamente cada algoritmo.
 	- Testeos con malos resultados son eliminados de la carrera por el algoritmo.
-- La performance de un algoritmo se define como la habilidad de hacer evolucionar a una población, medido a través del fitness del campeón
+- La performance de un algoritmo se define como la habilidad de hacer evolucionar a una población, medido a través del **fitness** del campeón
 - El que tenga mejor fitness: Aquel que termina, o aquel con mejor FO.
 
 **Búsqueda local**
@@ -396,9 +478,25 @@ Uno podría:
 Utiliza **ILS**: Solución S -> random walk -> búsqueda local.
 
 ### Clasificación de técnicas de control
-- Control dinámico: Cambios se realizan de forma determinista con respecto a alguna forma de medicion de tiempo en el algoritmo. Cada n iteraciones disminuye el valor del parámetro x en 10%
-- Control adaptativo: Los cambios se realizan en base a la información de la búsqueda. La  
-idea es monitorear ciertos elementos del algoritmo de forma de terminar cambios en los  
-valores de los parámetros en base a cambios en dichos elementos. Los valores de los  
-parámetros son globales para el algoritmo.
-- Control auto-adaptativo: Lo mismo que lo anterior, pero cada individuo de la población tiene sus propios parámetros.
+- **Control dinámico**:
+	- Cambios respecto a medición de tiempo en algoritmo.
+	- Cada n iteraciones cambia el valor del parámetro (por ejemplo)
+- **Control adaptativo**: 
+	- Monitorear el comportamiento
+	- Tomar decisiones en base al comportamiento monitoreado
+- **Control auto-Adaptativo**:
+	- Valores de parámetros propios de cada inviduo.
+
+# Clase X
+## Problemas Multi Objetivo
+- **Optimalidad de Pareto**
+	- Mejora de Pareto: Movimiento a otra solución que no empeora o es mejor.
+	- Pareto Óptimas: no mejorables
+	- Solución es dominada si es peor en cada una de las componentes de evaluar la FO. 
+	- Frente de Pareto: Conjunto de soluciones no dominadas. Conjunto de mejores soluciones pero hay que sacrificar algunas cosas
+- Algoritmos evolutivos funcionan bien
+	- **NSGA-ll**: Ordenamiento no dominado.
+		- Frentes no dominados 1,2,3...
+		- Soluciones en mismo frente, mismo ranking. Se prefiere aquella en la zona menos poblada.
+		- El algoritmo prefiere soluciones con distancia de aglomeración más alta. -> conjunto más diverso de soluciones.
+		- Para selección se utiliza torneo, gana el de mejor ranking y sino distancia crowling.
