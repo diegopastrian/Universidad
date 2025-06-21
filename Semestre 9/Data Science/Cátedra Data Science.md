@@ -362,7 +362,41 @@ Silueta: A más cercano a 1, mejor.
 		- Flatter( ) -> Entrega algo compacto
 	- Decoder
 
-## Clase 15 de Mayo
+
+# Clase 8 de Mayo
+El **Aprendizaje no supervisado** se utiliza para:
+- Clustering
+- Reducción dimensional
+- Reglas de asociación
+## Clustering
+No existe un target para este tipo de modelo. Algunos modelos típicos:
+- K-MEANS
+- Hierarchical clustering
+- DBSCAN
+- Neural Network Clustering
+### Validación del modelo
+Claramente al no haber un Y, necesita medir la calidad del modelo de cierta forma.
+**Método del codo**
+- Se calcula el WCSS para diferentes valores de "k".
+- WCSS: Suma de distancias al cuadrado de cada punto al centroide.
+- Se busca el codo, el punto de inflexión o codo donde agregar un nuevo cluster no es una disminución significativa en el WCSS.
+![[Pasted image 20250621153147.png]]
+**Silueta**
+- Silhoute score: Mide qué tan bien está cada objeto dentro de su propio cluster comparado con otros. Evalúa qué tan bien está asignado cada punto a su cluster, comparando qué tan "cómodo" está en su grupo versus qué tan "cerca" está del grupo vecino.
+	- Calcula la "bondad de ajuste", comparando distancia de un mismo cluster con la distancia entre clusters diferentes.
+	- cohesión interna vs distancia al grupo vecino más cercano.
+	- Promedio de distancia con puntos del mismo cluster VS centroide de grupo vecino más cercano.
+- Interpretación:
+	- Valor cercano a 1: Punto bien agrupado. Su distancia a otros puntos de su cluster es menor que la distancia a los puntos de otros clusters.
+	- Valor cercano a 0: Cerca del límite entre dos clusters.
+	- Valor cercano a -1: Posiblemente se asignó al cluster incorrecto
+- El **Gráfico de siluetas** permite visualizar que tan bien formados están los clustrs. Si hay un grosor similar y valores negativos. La linea roja representa la puntuación de silueta promedio de las muestras.
+![[Pasted image 20250621153608.png]]
+
+# Clase 12 de Mayo
+
+
+# Clase 15 de Mayo
 - Materia faltante
 ### Overfitting / Underfiting
 - Problema de la forma en que ataco el problema: data train != data test
