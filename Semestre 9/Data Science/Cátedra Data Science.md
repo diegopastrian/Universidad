@@ -394,6 +394,30 @@ Claramente al no haber un Y, necesita medir la calidad del modelo de cierta form
 ![[Pasted image 20250621153608.png]]
 
 # Clase 12 de Mayo
+El **Aprendizaje no supervisado** se utiliza para:
+- Clustering
+- Reducción dimensional
+- Reglas de asociación
+## Reducción dimensional
+Modelos típicos:
+- **PCA**
+	- El objetivo de PCA es tomar un conjunto de datos con muchas variables (dimensiones) y encontrar un nuevo conjunto de variables (llamadas **Componentes Principales**) que son "mejores" en el sentido de que capturan la mayor cantidad de información posible.
+	- Maximiza la varianza total de los datos.
+	- **Scree Plot**: ¿Con cuántos componentes quedarnos? Esto depende de cuanta información da cada componente. Se puede elegir por un metodo del codo, o por porcentaje acumulado. 
+	![[Pasted image 20250621163533.png]]
+- **LDA**
+	- Reducir dimensiones y MAXIMIZAR diferencia entre clases. Necesita saber a qué clase es cada dato (supervisado).
+	- Maximiza la distancia entre el centro de distintas clases.
+	- Minimiza la varianza dentro de cada clase. 
+- **T-SNE**
+
+
+
+
+
+
+
+
 
 
 # Clase 15 de Mayo
@@ -406,18 +430,58 @@ Claramente al no haber un Y, necesita medir la calidad del modelo de cierta form
 	- cross_vall_score, cross_val_score(model,X,Y,CV=5).
 	- **Alto Sesgo**: Underfitting
 	- **Alta varianza:** Overfitting
-- **Validation Curve**
-	- Model score: Depende de qué estoy midiendo, para clasificación accuracy etc
-	- a Más epocas más complejidad
-	- Validation score -> modelo mas malo pero mas underfiting
-	- training score -> modelo más bueno pero mas overfiting
-	- Eje 
-- **Regresión polimonial**
-	- Validation Curve
-	- Usa un poliniomio x elevado a algo
-	- Con el grado de la polinomial mejor se ajusta.
-	- mas a la derecha APLICATION VALIDATION CURVE Mas overfitting a la izquierda underfiting
-	- Esa validation curve me permitió saber que grado x:degree del polinomio
-- Learning Curve
-	- pendiente 
+
+Existe un trade-off entre sesgo y varianza. **CURVA DE VALIDACIÓN**.
+- X: Grado de Complejidad del modelo.
+	Mientras más complejo sea el modelo o más se ajuste a los datos de prueba, claramente el modelo no tendrá buena validación pero funcionará perfecto para los datos de prueba. En algún punto, existe un mejor rendimiento para los datos de entrenamiento.
+![[Pasted image 20250621165654.png]]
+
+
+- **Learning Curve**
+	- X: Cantidad de datos del dataset 
+	- Mientras más datos, el modelo es más resistente al overfitting! El punto óptimo podría perdurar y soportar mucha más complejidad del modelo.
+	![[Pasted image 20250621170854.png]]
+	- Una vez alcanzada la convergencia no sirve agregar más datos. 
 - Validation curve vs learning curve
+
+
+# ? de ?
+## Under y OverFitting.
+### Overfitting
+- Resampling
+	- Se eligen subconjuntos random de los datos originales
+- Modelo Complejo
+	- Disminuir parámetros (tamaño)
+- Alta varianza del modelo
+	- Utilizar validación cruzada
+	- Técnicas de regularización (Lasso y Ridge)
+	- Técnicas de ensamblado
+	- validación cruzada
+	- Entrenar modelo con suficientes datos.
+### Regularización
+La regularización es una técnica que **penaliza al modelo por tener coeficientes grandes
+- Previene Overfitting
+- Selección de variables
+- Maneja la Multicolinealidad
+- Sesgo-Varianza tradeoff:
+	- Se introduce sesgo para reducir la varianza.
+![[Pasted image 20250621182000.png]]
+La linea azul representa un modelo muy complejo, la verde el modelo regularizado. Los datos de entrenamiento tienen un poco más de sesgo. 
+#### Fórmula
+1. **Función de Pérdida Original (J = MSE):** El objetivo del modelo es encontrar los coeficientes (w) que minimicen esta función de error.
+    
+2. **Función de Pérdida Regularizada (J = MSE + α·C):** Ahora el objetivo es doble:
+    
+    - Minimizar el **MSE** (el error de ajuste).
+        
+    - Minimizar la **Complejidad C** (el tamaño de los coeficientes).
+        
+3. **El papel de Alpha (α):** Es el **hiperparámetro de regularización**. Es el "dial" que nosotros, como científicos de datos, movemos para controlar el equilibrio.
+    
+    - α = 0: Sin regularización. El modelo solo se preocupa por el MSE y probablemente sobreajustará.
+        
+    - α muy grande: La penalización es tan fuerte que el modelo se preocupará más por mantener los coeficientes pequeños que por ajustarse a los datos. Los coeficientes se acercarán a cero, y el modelo será muy simple (alto sesgo), probablemente subajustando.
+
+### Formas de regularizar
+- L1: Lasso
+- L2: Ridge
