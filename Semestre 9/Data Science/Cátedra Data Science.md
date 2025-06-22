@@ -484,4 +484,5 @@ La linea azul representa un modelo muy complejo, la verde el modelo regularizado
 
 ### Formas de regularizar
 - L1: Lasso
+	- $$    
 - L2: Ridge
