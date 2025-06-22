@@ -483,6 +483,34 @@ La linea azul representa un modelo muy complejo, la verde el modelo regularizado
     - α muy grande: La penalización es tan fuerte que el modelo se preocupará más por mantener los coeficientes pequeños que por ajustarse a los datos. Los coeficientes se acercarán a cero, y el modelo será muy simple (alto sesgo), probablemente subajustando.
 
 ### Formas de regularizar
-- L1: Lasso
-	- $$    
-- L2: Ridge
+- L1: Lasso (Selector)
+	- penaliza al modelo por **suma del valor absoluto** de sus coeficientes.
+	- Los coeficientes de variables pueden llegar a valer 0. -> SELECCIÓN DE VARIABLES ADECUADAS 
+	- Funciona mejor si atributos no tan correlados entre ellos.
+- L2: Ridge (Estabilizador)
+	- penaliza al modelo por la **suma del cuadrado** de sus coeficientes.
+	- Encoge los coeficientes pero nunca a 0.
+	- Manejar la multicolinealidad. 
+- Elastic Net (L1+L2):
+	- Suma de ambas, ponderado por r o (1-r) para indicar importancia relativa
+- En ANN:
+	- Dropout: desactivar neuronas inutiles
+	- Early stopping: desactivar un entrenamiento para no sobreentrenar
+
+## Clasificación
+
+Generalmente se habla de desbalance cuando  
+la clase minoritaria (en Clase Binaria) es inferior  
+al 15%.
+- Random oversampling 
+- SMOTE 
+	- Imagina dos puntos de fraude en un gráfico. SMOTE no los duplica, sino que crea un nuevo punto de "fraude" entre ellos.
+
+Undersampling
+- Random
+- Tomek links : puntos cercanos a la frontera de decisión
+- nearmiss
+	- selecciona los puntos de la clase mayoritaria que se van a **conservar** basándose en su distancia a los puntos de la clase minoritaria.
+- Cluster centroids:
+	- Resume los grupos usando k means centroids.
+- 
